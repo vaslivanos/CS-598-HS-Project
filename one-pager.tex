@@ -41,14 +41,10 @@ Resource-Constrained Social Networks under Prospect Theory
 
 \begin{document} \maketitle
 
-\par Consider $n$ agents, numbered $1$ through $n$, interacting in a social network. We represent this social network as
-an undirected weighted graph $G = (V, E)$, where $V = \{ 1, 2, \cdots, n \}$ represents the agents and $E$ represents
-for each agent the set of agents she is interacting with. The weight of an edge $\{ i, j \} \in E$ denotes the frequency of
-interaction between agents $i$ and $j$, and we also denote the neighborhood of an agent $i$ by
-$\mathcal{N}_i = \big\{ j \: | \: \{ i, j \} \in E \big\}$.
-
-\par In this network, each agent has a set of strategies available to her. Specifically, agent $i$ proposes an
-interaction frequency $f_{ij} \in \mathbb{R}$ to every agent $j \in \mathcal{N}_i$. Similarly, each agent $j$ proposes an
+\par Consider $n$ agents that interact with each other in a social network. Each agent $i$ has a specific set of other agents
+that they interact with, which is called the \textit{neighborhood} of $i$ and is denoted by $\mathcal{N}_i$. In this network,
+each agent has a set of strategies available to them. Specifically, agent $i$ proposes an interaction frequency
+$f_{ij} \in \mathbb{R}$ to every agent $j \in \mathcal{N}_i$. Similarly, each agent $j$ proposes an
 interaction frequency $f_{ji}$ to $i$. The frequency that they end up interacting at is simply the minimum of the two
 proposals. However, in real social networks, the agents have different preferences for who to interact with. To capture this
 in our model, we assign $w_{ij}$ to be the weight $i$ places on $j$, or similarly how much $i$ values the interaction with $j$.
