@@ -1,0 +1,122 @@
+\documentclass[A4paper,11pt]{article}
+
+\usepackage{latexsym}
+\usepackage{epsfig}
+\usepackage{verbatim}
+\usepackage{shadow}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{bm}
+\usepackage{fancyhdr}
+
+\addtolength{\textwidth}{4cm}
+\addtolength{\textheight}{4cm}
+\addtolength{\oddsidemargin}{-2cm}
+\addtolength{\topmargin}{-2.5cm}
+
+\newtheorem{theorem}{\sc Theorem}[section]
+\newtheorem{lemma}[theorem]{\sc Lemma}
+\newtheorem{corollary}[theorem]{\sc Corollary}
+\newtheorem{fact}[theorem]{\sc Fact}
+\newtheorem{remark}[theorem]{\sc Remark}
+\newcommand{\Ex}{\mathop{\mathbb{E}}}
+
+\author{
+	{\sc Guangyu Dong} \\
+	\texttt{gdong2@illinois.edu}
+	\and
+	{\sc Randolph Hill} \\
+	\texttt{rwhill2@illinois.edu}
+	\and
+	{\sc Vasileios Livanos} \\
+	\texttt{livanos3@illinois.edu}
+}
+
+\title{
+Information Diffusion in Grid-like Social Networks
+}
+
+\date{}
+
+\begin{document} \maketitle
+
+\section{Introduction}
+
+\par Consider $n$ agents that interact with each other in a social network. Each agent $i$ has a specific set of other agents
+that they interact with, which is called the \textit{neighborhood} of $i$ and is denoted by $\mathcal{N}_i$. In this network,
+each agent has a set of strategies available to them. Specifically, agent $i$ proposes an \textit{interaction frequency}
+$f_{ij} \in \mathbb{R}$ to every agent $j \in \mathcal{N}_i$. Similarly, each agent $j$ proposes an
+interaction frequency $f_{ji}$ to $i$. The frequency that they end up interacting at is simply the minimum of the two
+proposals. However, in real social networks, the agents have different preferences for who to interact with. To capture this
+in our model, we assign $w_{ij}$ to be the \textit{weight} $i$ places on $j$, or similarly how much $i$ values the interaction
+with $j$. Further motivated by real social networks, we assign all agents a uniform ``budget" of interaction frequency $\beta$
+that they cannot exceed.
+
+\par In our social network, we assume that there exist some external \textit{service providers} that provide some service of a
+certain quality to the agents. We assume a rather complicated framework, where each agent $i$ has a specific \textit{type},
+denoted by $\theta_i \in [0, 1]$ and there exist $k$ distinct service providers that are not a part of the social network. Each
+service provider has a different quality of service for each agent type, however the quality they provide is fixed for all agents
+of the same type. This is again an attempt to model real-life social networks, where te quality of service an agent receives
+is based on specific attributes they possess which in turn classify the agent as being of a certain type.
+
+\par We make the following assumption. Each agent $i$ initially has a service provider chosen uniformly at random, and receives a
+specific quality $q_i \in [0, 1]$ from them. Furthermore, $i$ gets some utility by communicating with all agents in their
+neighborhood but also by learning about different service providers with higher quality than $q_i$ for their type. We assume
+that, as $i$ communicates with a neighbor $j$ of the same type, for each unit of communication the probability that $i$ learns
+$j$'s quality is $p$, which is constant and uniform for all agents in the network. Therefore, since between time $t$ and $t+1$
+they interact $f^*_{ij}(t)$ times, the probability that $i$ learns $q_j$ is
+
+\[
+1 - {\left( 1 - p \right)}^{f^*_{ij}(t)}
+\]
+
+\par Also, since agents of different types exhibit different qualities from the same service provider, we make the assumption
+that if $j$ is a neighbor of $i$, then $i$ is not interested in learning $q_j$ and therefore agents of type different than
+$\theta_i$ contribute in $i$'s utility simply through their interaction and not by letting $i$ know about the existence of a
+service provider with higher quality. Our final assumption is that once $i$ learns of a different service provider that offers
+higher quality service to agents with type $\theta_i$, they immediately switch to that provider and start receiving the
+aforementioned higher quality.
+
+\par Thus, we model $i$'s utility by
+
+\begin{equation}\label{eq:util}
+u_i(t) = \sum_{j \in \mathcal{N}_i} {w_{ij} f^*_{ij}(t) \left( \beta - f^*_{ij}(t) \right) } +
+\sum_{j \in \mathcal{Z}_i} {\Ex \left[ \min \left( q_j - q_i, 0 \right) \right] \left( 1 - {\left( 1 - p \right)}^{f^*_{ij}(t)} \right) }
+\end{equation}
+
+where $\mathcal{Z}_i$ is the subset of $i$'s neighbors that have the same type as $i$. Our model is sequential in that at each
+time step $t$ one agent is chosen at random and updates their proposals to those that maximize their utility at time $t$.
+This dynamics is called \textit{best-response}, since $i$ plays their best-response strategy to the strategies played by all
+other players, assuming that they remain fixed at these strategies, at least for time $t$. It is easy to see that to play their
+best-response strategy at time $t$, $i$ has to solve the following convex optimization problem for variables $f_{ij}(t)$
+
+\begin{align}\label{eq:opt-prog}
+\max & \: \: \: \sum_{j \in \mathcal{N}^i} {w_{ij} f^*_{ij}(t) \left( \beta - f^*_{ij}(t) \right) } +
+\sum_{j \in \mathcal{Z}_i} {\Ex \left[ \min \left( q_j - q_i, 0 \right) \right] \left( 1 - {\left( 1 - p \right)}^{f^*_{ij}(t)} \right) } \\
+s.t. & \: \: \: \sum_{j \in \mathcal{N}^i} {f_{ij}} \leq \beta \nonumber \\
+& \: \: \: f_{ij} \geq 0, \: \: \forall j \in \mathcal{N}^i \nonumber \\
+& \: \: \: f_{ij} \leq f_{ji}, \: \: \forall j \in \mathcal{N}^i \nonumber
+\end{align}
+
+\par While the solution to (\ref{eq:opt-prog}) is not trivial, we assume that all agents are able to solve it and to calculate
+their best-response. Furthermore, it should be clear that since $p > 0$, given infinite time, all agents will eventually learn
+the service provider that offers the highest quality for their type in their connected component, through their communication with
+the agents of the same type. But this immediately raises another question; what is the rate of diffusion for this information and,
+more importantly, how is it affected by -- seemingly -- small changes in the network structure? Our project's motivation is to
+attempt to answer this question for three different grid-like graphs by analyzing the rate of information diffusion in each one.
+
+\section{The plain $2$-dimensional grid}
+
+
+
+%\label{Bibliography}
+
+%\lhead{\emph{Bibliography}}
+
+%\bibliographystyle{abbrv}
+
+%\bibliography{report} % The references (bibliography) information are stored in the file named "Bibliography.bib"
+
+\end{document}
