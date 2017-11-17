@@ -10,14 +10,16 @@ from cvxpy import *
 import matplotlib.pyplot as plt
 import sys
 
-# Gris name
-name = int(sys.argv[1])
+# graph name (for file naming)
+graph_name = int(sys.argv[1])
 
 #Probability
 p = int(sys.argv[2])
 
-
+#Folder and file names to read from
 file_prefixs = ["Plain_Grid", "Biased_Grid", "Unbiased_grid"]
+
+# the probability value used (for graph naming)
 graph_type = "p=" + p
 
 fig, ax = sb.mpl.pyplot.subplots(1, 1)
@@ -66,7 +68,7 @@ z.tick_params(direction='in', length=6, width=2, colors='k', which='major', labe
 z.tick_params(direction='in', length=4, width=1, colors='gray', which='minor')
 z.minorticks_on()
 
-s = "./Grids_%s.pdf" % (name)
+s = "./Grids_%s.pdf" % (graph_name)
 sb.despine(offset=25, left=True, trim=True)
 fig.tight_layout()
 fig.savefig(s)
