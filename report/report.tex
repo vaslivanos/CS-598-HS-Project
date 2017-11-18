@@ -59,7 +59,10 @@ certain quality to the agents. We assume a rather complicated framework, where e
 denoted by $\theta_i \in [0, 1]$ and there exist $k$ distinct service providers that are not a part of the social network. Each
 service provider has a different quality of service for each agent type, however the quality they provide is fixed for all agents
 of the same type. This is again an attempt to model real-life social networks, where te quality of service an agent receives
-is based on specific attributes they possess which in turn classify the agent as being of a certain type.
+is based on specific attributes they possess which in turn classify the agent as being of a certain type. While we start by
+analyzing the case where the agent types are drawn at random from the uniform distribution, we believe it is of great
+importance to also study cases where neighboring agents have a greater chance of being of the same type. This implies a
+clustering of agents' types, which is motivated by the homophily that real social networks exhibit in general.
 
 \par We make the following assumption. Each agent $i$ initially has a service provider chosen uniformly at random, and receives a
 specific quality $q_i \in [0, 1]$ from them. Furthermore, $i$ gets some utility by communicating with all agents in their
@@ -100,6 +103,22 @@ s.t. & \: \: \: \sum_{j \in \mathcal{N}^i} {f_{ij}} \leq \beta \nonumber \\
 & \: \: \: f_{ij} \leq f_{ji}, \: \: \forall j \in \mathcal{N}^i \nonumber
 \end{align}
 
+\par This problem will in general be very difficult to solve. In order to make it more tractable, we consider an approximation
+to each agent's utility, where we replace
+
+\[
+1 - {\left( 1 - p \right)}^{f^*_{ij}(t)}
+\]
+
+with 
+
+\[
+p f^*_{ij}(t)
+\]
+
+This approximation makes sense only for $p << f^*_{ij}(t)$, therefore we limit our analysis to cases where $p$ is significantly
+small.
+
 \par While the solution to (\ref{eq:opt-prog}) is not trivial, we assume that all agents are able to solve it and to calculate
 their best-response. Furthermore, it should be clear that since $p > 0$, given infinite time, all agents will eventually learn
 the service provider that offers the highest quality for their type in their connected component, through their communication with
@@ -107,9 +126,94 @@ the agents of the same type. But this immediately raises another question; what 
 more importantly, how is it affected by -- seemingly -- small changes in the network structure? Our project's motivation is to
 attempt to answer this question for three different grid-like graphs by analyzing the rate of information diffusion in each one.
 
-\section{The plain $2$-dimensional grid}
+\subsection{The plain $2$-dimensional grid}
+
+\par Consider a graph $G = (V, E)$ where the vertex are arranged in a $2$-dimensional grid, and every edge is either vertical
+or horizontal. We are interested in calculating the rate of information diffusion in this graph. Suppose that all agents are of
+the same type, $\theta$, and there exists only one agent that has the service provider with the highest quality, without loss of
+generality, let that agent be the one represented by the upper left corner vertex in the grid. We understand that this is the
+worst-case scenario for this graph, because more agent types would imply that the information diffusion analysis splits to many
+smaller graphs, and if more agents have the service provider with the highest quality then the probability that this information
+spreads rises. In both cases, the rate of information diffusion would be faster.
+
+\par We use this graph as a starting point for our analysis, because it simplifies our model, while being the worst-case scenario
+for this graph structure. However, later we move on to the general case with multiple agent types and agents who have the
+service provider of the highest quality.
+
+\subsection{The extended $2$-dimensional grid}
+
+\par Next, we extend the previous graph model by allowing each node $i$ to form one long-range edge with some other node $j$ that
+does not immediately communicate with $i$ through the grid structure. However, the probability distribution for this edge
+formation is not random, but instead is proportional to $\frac{1}{d^2}$, where $d$ is the Manhattan distance, or equivalently
+the $L_1$ norm, defined as
+
+\[
+d(i, j) = |i.x - j.x| + |i.y - j.y|
+\]
+
+where $i.x$ denotes the row and $i.y$ denotes the column of agent $i$ in the grid. Note here that the edge formation
+distribution does not depend on the types of agents, therefore we expect that most agents will not form an edge with
+an agent of the same type. However, for those that will, the probability that they learn of a service provider with higher
+quality for their type rises; albeit only by a small fraction. Thus, when we calculate the rate of information diffusion for
+this graph, we expect it to be smaller than that of the plain $2$-d grid, but not by a significant factor.
+
+\subsection{The biased $2$-dimensional grid}
+
+\par This previous observation naturally leads us to study a small variation of the previous graph model, namely the biased
+$2$-d grid. In this model, agents again form long-range edges to other agents in the grid with probablities proportional
+to $\frac{1}{d^2}$, but they are biased towards forming an edge with an agent of the same type as them. Therefore, we
+assume that, when an agent $i$ forms a long-range edge, agents with type $\theta_i$ are $c$ times more likely to be chosen
+by $i$ than agents of different type.
+
+\par We plan on varying the parameter $c$ to observe how the rate of information diffusion behaves, compared to the two
+previous models, starting from $c = 2$. Intuitively, we expect this network structure to exhibit a very significant
+difference in the rate of information diffusion for $c \geq c_{cr}$. Our main goal with this network structure is to
+calculate this $c_{cr}$. The results we get may hopefully reveal why real-life social networks exhibit homophily and
+arrange themselves in type clusters.
 
 
+\section{Initial Results}
+
+\par In this final section, we provide some initial results of our theoretical analysis. Hopefully, the ideas presented
+here will function as a basis for our main goals of this problem. For a specific time $t$, we define two sets of agents below
+
+\[
+\mathcal{I}(t) = \{ i : i \: \: \text{has the service provider of the highest quality.} \}
+\]
+
+\[
+\mathcal{F}(t) = \{ i : i \: \: \text{does not have the service provider of the highest quality, but some} \: \: j \in \mathcal{N}_i \: \: \text{does.} \}
+\]
+
+\par It is understood that the agents in $\mathcal{I}(t)$ are the ones who know the information at time $t$, while the agents
+in $\mathcal{F}(t)$ are the agents to which the information will spread next. Next, we define a random variable $X_t$ which
+represents the number of agents who have the service provider of the highest quality. Therefore, in our worst-case model, we
+assume $X_0 = 1$ and we want to calculate
+
+\[
+\lambda^* = \min_{\lambda > 0} { \{ X_\lambda = n \} }
+\]
+
+\par We now present our main contribution so far. Consider a Markov chain on $X_t$ that is essentially a path graph of size $n$,
+enhanced with self-loops. Our initial state is $X_0 = 1$ and we would like to calculate the hitting time of the event
+$\{ X_t \geq n \}$; meaning the expected minimum $t$ for which this event comes true. While normally we can analyze such
+hitting times on Markov chains with ease, our Markov chain has an extra level of difficulty, due to the fact that the transition
+probabilities vary with time. Let $F = |\mathcal{F}(t)|$, and consider an agent $i \in \mathcal{I}(t)$ and an agent
+$j \in \mathcal{F}(t)$. Then, at time $t$, we get
+
+\[
+Pr[X_{t+1} = k + z | X_t = k] = \binom{F}{z} { \left( p f^*_{ij}(t) \right) }^z { \left( 1 - p f^*_{ij}(t) \right) }^{F-z}
+\]
+
+\par Such Markov chains with time-varying transition probabilities are called \textit{time inhomogeneous Markov chains}, and
+while there have been several attempts to argue about their convergence properties and analyze them, to the best of our
+knowledge no significant convergence results are known them. We hope our analysis for this project sheds light both to
+these models discussed earlier, but also provides new tools that contribute to the analysis of generic time-inhomogeneous
+Markov chains.
+
+\par Finally, we plan on performing several simulations that compare the rate of diffusion in the aforementioned models,
+varying many paramteres to see their effect on the network. Our hope is that these simulations confirm the theoretical
+results that we develop, or provide some insight that highlights the limitations of our theoretical analysis.
 
 %\label{Bibliography}
 
