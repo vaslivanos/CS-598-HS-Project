@@ -14,6 +14,9 @@ import sys
 # file_prefix = int(sys.argv[1])
 file_prefix = "Plain_Grid"
 
+#Nq = int(sys.argv[1])
+Nq = "10"
+
 fig, ax = sb.mpl.pyplot.subplots(1, 1)
 colors = sb.mpl_palette('magma', n_colors=3)
 
@@ -29,11 +32,13 @@ for filename in os.listdir("./"):
 
         if len(content) > 100:
             grid_param_name = content[1]
-            if grid_param_name not in data_dic:
-                data_dic[grid_param_name] = []
-            content = content[3:]
-            content = [int(x.strip().split()[1]) for x in content]
-            data_dic[grid_param_name].append(content)
+            grid_param_name_list = grid_param_name.split()
+            if grid_param_name_list[14] == Nq:
+                if grid_param_name not in data_dic:
+                    data_dic[grid_param_name] = []
+                content = content[3:]
+                content = [int(x.strip().split()[1]) for x in content]
+                data_dic[grid_param_name].append(content)
         continue
     else:
         continue
