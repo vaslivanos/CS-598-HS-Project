@@ -85,6 +85,8 @@ def best_response(g, w, f, i):
     objective = Maximize(sum(l))
     constraints = []
     for j in range(N):
+        # print ("x " + str([j]))
+        # print ("f " + str(f[j][i]))
         constraints += [0 <= x[j], x[j] <= f[j][i] ]
     constraints += [sum(x) <= beta]
 
@@ -102,11 +104,14 @@ def best_response(g, w, f, i):
         val = prob.solve() + (1 - g.vs[i]['quality'])*1.0*(c*dlt)/(1+c*dlt)
         if(val > curr_max):
             curr_max = val
+            # print("x value solution" + str(x.value))
             solution = x.value
 
     if(solution == []):
+        # print("x value solution 2" + str(x.value))
         return x.value
     else:
+        # print("solution" + str(solution))
         return solution
 
 def solver(graph, N, beta, k, Nq, w, f, opt, quality):
@@ -152,7 +157,11 @@ def solver(graph, N, beta, k, Nq, w, f, opt, quality):
         else:
             graph.vs[i]['theta'] = 0.5
 
-        f[i] = best_response(graph, w, f, i)
+        solution = best_response(graph, w, f, i)
+        if not solution is None:
+            for k in range(len(solution)):
+                f[i][k] = solution[k]
+        # f[i] = best_response(graph, w, f, i)
 
         # Append new quality point
         qualities.append(np.sum(graph.vs[j]['quality'] for j in range(N)))

@@ -169,7 +169,12 @@ def solver(graph, N, beta, k, Nq, w, f, opt, quality):
         else:
             graph.vs[i]['theta'] = 0.5
 
-        f[i] = best_response(graph, w, f, i)
+        solution = best_response(graph, w, f, i)
+        if not solution is None:
+            for k in range(len(solution)):
+                f[i][k] = solution[k]
+
+        # f[i] = best_response(graph, w, f, i)
 
         # Append new quality point
         qualities.append(np.sum(graph.vs[j]['quality'] for j in range(N)))
