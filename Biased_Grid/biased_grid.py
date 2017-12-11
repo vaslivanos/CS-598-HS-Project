@@ -12,6 +12,8 @@ import igraph as ig
 import random
 from cvxpy import *
 import sys
+import csv
+
 
 # We assume that for a specific service provider
 # the quality they provide for a specific type
