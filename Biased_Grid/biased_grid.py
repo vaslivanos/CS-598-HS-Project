@@ -55,12 +55,8 @@ def generate_graph(n):
     m = int(np.sqrt(n))
     graph = ig.Graph.Lattice([m, m], nei=1, circular=False)
 
-    # Initialize graph, weights, proposals and provider qualities per type
-    w = [ list(map(float,x)) for x in read_csv_data(FILENAME_PREFIX + "w") ]
-    f = [ list(map(float,x)) for x in read_csv_data(FILENAME_PREFIX + "f") ]
-    prov = [ list(map(float,x)) for x in read_csv_data(FILENAME_PREFIX + "prov") ]
+
     types = list(map(int, read_csv_data(FILENAME_PREFIX + "types")[0]))
-    providers = list(map(int, read_csv_data(FILENAME_PREFIX + "providers")[0]))
 
     for i in range(n):
         graph.vs[i]['type'] = types[i]
@@ -84,6 +80,14 @@ def generate_graph(n):
         l2 = dist[i]
         neighbor = np.random.choice(l, 1, p=l2)
         graph.add_edge(i, neighbor[0])
+
+
+    # Initialize graph, weights, proposals and provider qualities per type
+    w = [ list(map(float,x)) for x in read_csv_data(FILENAME_PREFIX + "w") ]
+    f = [ list(map(float,x)) for x in read_csv_data(FILENAME_PREFIX + "f") ]
+    prov = [ list(map(float,x)) for x in read_csv_data(FILENAME_PREFIX + "prov") ]
+    providers = list(map(int, read_csv_data(FILENAME_PREFIX + "providers")[0]))
+
 
     # Assign each agent a type, a provider, the provider's quality,
     # initialize the total quality, compute the set of neighbors
