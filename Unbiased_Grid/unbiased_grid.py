@@ -12,6 +12,8 @@ import igraph as ig
 import random
 from cvxpy import *
 import sys
+import csv
+
 
 # We assume that for a specific service provider
 # the quality they provide for a specific type
@@ -37,6 +39,14 @@ p = float(sys.argv[6])
 
 # location and prefix for data files
 FILENAME_PREFIX = "../data/data_" + str(N) + "_" + str(beta) + "_" + str(k) + "_" + str(Nq) + "_"
+
+def read_csv_data(filename):
+    filename = filename + ".csv"
+    data = []
+    with open(filename, 'r') as f:
+      reader = csv.reader(f)
+      data = list(reader)
+    return data
 
 # Graph generator function (number of agents, edge probability, preference matrix)
 def generate_graph(n):

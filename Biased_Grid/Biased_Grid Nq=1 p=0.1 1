@@ -2,11 +2,3 @@ Biased Grid
 T = 100 N = 64 beta = 100 k = 50 Nq = 1 p = 0.1
 OPT =  60.945514610280505
 
-Traceback (most recent call last):
-  File "biased_grid.py", line 223, in <module>
-    q = solver(g, N, beta, k, Nq, w, f, opt, init_qual)
-  File "biased_grid.py", line 188, in solver
-    solution = best_response(graph, w, f, i)
-  File "biased_grid.py", line 116, in best_response
-    l.append(-w[i][j]*square(x[j]) + w[i][j]*beta*x[j])
-TypeError: 'int' object is not subscriptable
