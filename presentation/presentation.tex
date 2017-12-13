@@ -1,0 +1,288 @@
+\documentclass{beamer}
+
+\mode<presentation> {
+
+% The Beamer class comes with a number of default slide themes
+% which change the colors and layouts of slides. Below this is a list
+% of all the themes, uncomment each in turn to see what they look like.
+
+%\usetheme{default}
+%\usetheme{AnnArbor}
+%\usetheme{Antibes}
+%\usetheme{Bergen}
+%\usetheme{Berkeley}
+%\usetheme{Berlin}
+%\usetheme{Boadilla}
+%\usetheme{CambridgeUS}
+%\usetheme{Copenhagen}
+%\usetheme{Darmstadt}
+%\usetheme{Dresden}
+%\usetheme{Frankfurt}
+%\usetheme{Goettingen}
+%\usetheme{Hannover}
+%\usetheme{Ilmenau}
+%\usetheme{JuanLesPins}
+%\usetheme{Luebeck}
+\usetheme{Madrid}
+%\usetheme{Malmoe}
+%\usetheme{Marburg}
+%\usetheme{Montpellier}
+%\usetheme{PaloAlto}
+%\usetheme{Pittsburgh}
+%\usetheme{Rochester}
+%\usetheme{Singapore}
+%\usetheme{Szeged}
+%\usetheme{Warsaw}
+
+% As well as themes, the Beamer class has a number of color themes
+% for any slide theme. Uncomment each of these in turn to see how it
+% changes the colors of your current slide theme.
+
+%\usecolortheme{albatross}
+%\usecolortheme{beaver}
+%\usecolortheme{beetle}
+%\usecolortheme{crane}
+%\usecolortheme{dolphin}
+%\usecolortheme{dove}
+%\usecolortheme{fly}
+%\usecolortheme{lily}
+%\usecolortheme{orchid}
+%\usecolortheme{rose}
+%\usecolortheme{seagull}
+%\usecolortheme{seahorse}
+%\usecolortheme{whale}
+%\usecolortheme{wolverine}
+
+%\setbeamertemplate{footline} % To remove the footer line in all slides uncomment this line
+%\setbeamertemplate{footline}[page number] % To replace the footer line in all slides with a simple slide count uncomment this line
+
+%\setbeamertemplate{navigation symbols}{} % To remove the navigation symbols from the bottom of all slides uncomment this line
+}
+
+
+\usepackage{lmodern}
+
+\usepackage{scrextend}
+%\changefontsizes{9pt}
+
+\usepackage{graphicx}
+\usepackage{subfig}
+
+\usepackage{mathtools}
+\usepackage{amsfonts}
+\usepackage{bussproofs}
+\usepackage{wrapfig}
+\usepackage{graphicx} % Allows including images
+\usepackage{booktabs} % Allows the use of \toprule, \midrule and \bottomrule in tables
+\usepackage{bm} 
+\usepackage{xspace}
+\usepackage{setspace}
+\usepackage{amsthm}
+\usepackage{algorithm, algorithmic}
+\newcommand{\RR}{{\sf I\kern-0.14emR}}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
+
+\title[Information Diffusion in Grids]{CS598HS Advanced Social \& Information Networks \\ Information Diffusion in Grid-like Social Networks} % The short title appears at the bottom of every slide, the full title is only on the title page
+
+\author[Dong, Hill, Livanos]{Guangyu Dong, Randolph Hill, Vasileios Livanos} % Your name
+\institute[UIUC] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
+{
+Department of Computer Science \\
+University of Illinois at Urbana-Champaign \\ % Your institution for the title page
+\medskip
+\textit{gdong2@illinois.edu}, \textit{rwhill2@illinois.edu}, \textit{livanos3@illinois.edu} % Your email address
+}
+\date{December 13, 2017} % Date, can be changed to a custom date
+
+\begin{document}
+
+\begin{frame}
+\titlepage % Print the title page as the first slide
+\end{frame}
+
+
+\section{Introduction}
+
+\begin{frame}
+\frametitle{Overview} % Table of contents slide, comment this block out to remove it
+\tableofcontents[currentsection] % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
+\end{frame}
+
+\begin{frame}{Problem Statement}
+
+\pause
+\begin{itemize}
+\item We study how fast information propagates through variants of grid-like social networks.
+\pause
+\item We assume a fixed-weight, directed graph $G$ representing the social network, with nodes as agents and
+edges that represent the interaction between two agents.
+\pause
+\item Each agent $i$ has a specific type $\theta_i \in [0,1]$, and interacts with another agent $j$ at a
+time-varying frequency $f^*_{ij}(t)$.
+\pause
+\item In our model, the information can only be transmitted between agents of the same type, and that there
+exists a source of information for each different agent type.
+\pause
+\item Finally, there is a constant probability $p$ that the information will leak through a single interaction.
+This implies that an agent $j$ who interacts with frequency $f^*_{ij}(t)$ at time $t$ with another agent $i$ who has
+the information, has a probability $p f^*_{ij}(t)$ of getting the information.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Motivation}
+
+\pause
+\begin{itemize}
+\item All people interact with other people in real social networks, and most of the time we procure information
+through this interaction.
+\pause
+\item This information could be for example which individual is a good doctor, or a good car mechanic, and
+procuring this information could drastically affect our quality of life.
+\pause
+\item Our problem is thus motivated by these examples, and we assume that there exist $k$ external service providers,
+who provide services of different quality to agents of different type, but of the same quality to agents of the same type.
+\pause
+\item Thus, the information that is propagated through the network is assumed to be the identity of the highest quality
+service provider for a specific type of agents.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Preliminaries}
+
+\pause
+\begin{itemize}
+\item Our analysis focuses on $3$ different graph structures:
+	\pause
+	\begin{enumerate}
+	\item Plain Grid (PG): A $4$-regular graph where vertices are arranged in a grid pattern.
+	\pause
+	\item Unbiased Grid (UG): Similar to PG, but every node $u$ forms one additional edge with some other node
+	$v$, which is picked randomly, with probability	proportional to $\frac{1}{d^2}$, where $d$ is
+	the Manhattan distance of $u$ and $v$ in the grid.
+	\pause
+	\item Biased Grid (BG): Similar to UG but the probability of an agent $u$ forming an edge with another agent
+	$v$ of the same type is proportional to $\frac{b}{d^2}$. $b$ is called the \textit{bias} of the graph.
+	\end{enumerate}
+\pause
+\item We seek to compare the \textbf{Diffusion Rate (DR)} of information between these graphs, which is defined
+as the expected time it will take for the information to spread to all agents in the graph who can potentially
+learn it.
+\pause
+\item We seek to both develop a model and obtain some theoretical results about the DR between these graphs,
+as well as perform several simulations that possibly confirm our theoretical analysis.
+\end{itemize}
+
+\end{frame}
+
+\section{Theoretical Results}
+
+\begin{frame}
+\frametitle{Overview} % Table of contents slide, comment this block out to remove it
+\tableofcontents[currentsection] % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
+\end{frame}
+
+\begin{frame}{Plain Grid}
+
+\pause
+\begin{itemize}
+\item We model our system as a \textbf{Time Inhomogeneous Markov Chain}. While TIMCs are extremely important,
+not many theoretical results are known about them.
+\pause
+\item To make the problem tractable, we assume that any non-zero interaction between two agents is lower-bounded
+by a constant $\delta > 0$, meaning that agents cannot have an arbitrarily small interaction.
+\end{itemize}
+
+\pause
+\begin{block}{$C_t$: Possible Expansion Set}
+\[
+C_t = \left\{ \{i, j\} \in E(G) \mid i \in \mathcal{I}(t), j \in \mathcal{F}(t), \theta_i = \theta_j \right\}
+\]
+\end{block}
+
+\pause
+\begin{block}{Diffusion Rate}
+For any graph $G$
+\[
+DR \leq n \sum_{t = 1}^{\infty} {\left( t \left( 1 - {(1 - \delta)}^{|C_t|} \right) \prod_{k = 1}^{t-1} {{(1 - \delta)}^{|C_k|} } \right) }
+\]
+\end{block}
+
+\end{frame}
+
+\begin{frame}{Unbiased and Biased Grids}
+
+\pause
+\begin{block}{Expected increase in $|C_t|$ in UG}
+\[
+\mathbb{E}\left[{|C^{UG}_t| - |C^{PG}_t|}\right] = \frac{ \left( \sum_{k = 2}^{2n} {\frac{1}{k^2}} \right) |\mathcal{I}(t)| \left( 1 - \frac{|\mathcal{I}(t)|}{n} \right) }{N_\theta}
+\]
+\end{block}
+
+\pause
+\begin{itemize}
+\item We observe that the increase in DR between PG and UG is exponential!
+\end{itemize}
+
+\pause
+\begin{block}{Expected increase in $|C_t|$ in BG}
+\[
+\mathbb{E}\left[{|C^{BG}_t| - |C^{PG}_t|} \right] = b \cdot \mathbb{E}\left[{|C^{UG}_t| - |C^{PG}_t|}\right]
+\]
+\end{block}
+
+\pause
+\begin{itemize}
+\item Similarly, the increase in DR between BG and UG is exponential, and is dependent on the bias $b$.
+\pause
+\item Specifically, for $b = 2$ we expect the difference in DR between BG and UG to be larger than the
+difference in DR between UG and PG.
+\end{itemize}
+
+\end{frame}
+
+\section{Simulation Results}
+
+\begin{frame}
+\frametitle{Overview} % Table of contents slide, comment this block out to remove it
+\tableofcontents[currentsection] % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
+\end{frame}
+
+\begin{frame}{Diffusion Rate Simulations}
+
+%\pause
+%\begin{figure}
+%        \centering
+%        \begin{minipage}{.5\textwidth}
+%            \centering
+%            \includegraphics[width=.65\linewidth]{proof_technique.png}
+%        \end{minipage}%
+%        
+%\end{figure}
+
+\end{frame}
+
+\begin{frame}
+
+\begin{center}
+\LARGE{QUESTIONS ?}
+\end{center}
+
+\begin{figure}
+        \centering
+        \begin{minipage}{.5\textwidth}
+            \centering
+            \includegraphics[width=.8\linewidth]{questions.png}
+        \end{minipage}%
+        
+\end{figure}
+
+\end{frame}
+
+\end{document}
