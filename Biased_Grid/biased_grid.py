@@ -12,6 +12,8 @@ import igraph as ig
 import random
 from cvxpy import *
 import sys
+import csv
+
 
 # We assume that for a specific service provider
 # the quality they provide for a specific type
@@ -35,15 +37,29 @@ Nq = int(sys.argv[5])
 # Probability p of information diffusion
 p = float(sys.argv[6])
 
+# location and prefix for data files
+FILENAME_PREFIX = "../data/data_" + str(N) + "_" + str(beta) + "_" + str(k) + "_" + str(Nq) + "_"
+
+def read_csv_data(filename):
+    filename = filename + ".csv"
+    data = []
+    with open(filename, 'r') as f:
+      reader = csv.reader(f)
+      data = list(reader)
+    return data
+
 # Graph generator function (number of agents, edge probability, preference matrix)
 def generate_graph(n):
 
     # Instantiate the graph
     m = int(np.sqrt(n))
     graph = ig.Graph.Lattice([m, m], nei=1, circular=False)
-    
+
+
+    types = list(map(int, read_csv_data(FILENAME_PREFIX + "types")[0]))
+
     for i in range(n):
-        graph.vs[i]['type'] = random.randint(0, Nq-1)
+        graph.vs[i]['type'] = types[i]
 
     dist = [[0 for i in range(n)] for j in range(n)]
     for i in range(n):
@@ -65,21 +81,19 @@ def generate_graph(n):
         neighbor = np.random.choice(l, 1, p=l2)
         graph.add_edge(i, neighbor[0])
 
+
     # Initialize graph, weights, proposals and provider qualities per type
-    w = [[0 for x in range(n)] for y in range(n)]
-    f = [[0 for x in range(n)] for y in range(n)]
-    prov = [[random.random() for x in range(Nq)] for y in range(k)]
-    for edge in graph.es:
-        w[edge.source][edge.target] = random.random()
-        w[edge.target][edge.source] = random.random()
-        f[edge.source][edge.target] = random.uniform(0, beta)
-        f[edge.target][edge.source] = random.uniform(0, beta)
+    w = [ list(map(float,x)) for x in read_csv_data(FILENAME_PREFIX + "w") ]
+    f = [ list(map(float,x)) for x in read_csv_data(FILENAME_PREFIX + "f") ]
+    prov = [ list(map(float,x)) for x in read_csv_data(FILENAME_PREFIX + "prov") ]
+    providers = list(map(int, read_csv_data(FILENAME_PREFIX + "providers")[0]))
+
 
     # Assign each agent a type, a provider, the provider's quality,
     # initialize the total quality, compute the set of neighbors
     # of the same type and initialize their beta distribution
     for i in range(n):
-        graph.vs[i]['provider'] = random.randint(0, k-1)
+        graph.vs[i]['provider'] = providers[i]
         graph.vs[i]['quality'] = prov[graph.vs[i]['provider']][graph.vs[i]['type']]
         graph.vs[i]['Ns'] = set()
         graph.vs[i]['Z'] = set()
@@ -134,7 +148,7 @@ def best_response(g, w, f, i):
 def solver(graph, N, beta, k, Nq, w, f, opt, quality):
 
     qualities = [quality]
-    
+
     # Main for-loop
     for t in range(T):
 
