@@ -1,5 +1,8 @@
-\documentclass[A4paper,11pt]{article}
+\documentclass[format=acmsmall, review=false]{acmart}
 
+\usepackage{acm-ec-17}
+
+\usepackage{booktabs} % For formal tables
 \usepackage{latexsym}
 \usepackage{epsfig}
 \usepackage{verbatim}
@@ -10,39 +13,120 @@
 \usepackage{color}
 \usepackage{bm}
 \usepackage{fancyhdr}
+\usepackage{hyperref}
 
-\addtolength{\textwidth}{4cm}
-\addtolength{\textheight}{4cm}
-\addtolength{\oddsidemargin}{-2cm}
-\addtolength{\topmargin}{-2.5cm}
-
-\newtheorem{theorem}{\sc Theorem}[section]
-\newtheorem{lemma}[theorem]{\sc Lemma}
-\newtheorem{corollary}[theorem]{\sc Corollary}
-\newtheorem{fact}[theorem]{\sc Fact}
-\newtheorem{remark}[theorem]{\sc Remark}
+%\newtheorem{theorem}{\sc Theorem}[section]
+%\newtheorem{lemma}[theorem]{\sc Lemma}
+%\newtheorem{corollary}[theorem]{\sc Corollary}
+%\newtheorem{fact}[theorem]{\sc Fact}
+%\newtheorem{remark}[theorem]{\sc Remark}
 \newcommand{\Ex}{\mathop{\mathbb{E}}}
 
-\author{
-	{\sc Guangyu Dong} \\
-	\texttt{gdong2@illinois.edu}
-	\and
-	{\sc Randolph Hill} \\
-	\texttt{rwhill2@illinois.edu}
-	\and
-	{\sc Vasileios Livanos} \\
-	\texttt{livanos3@illinois.edu}
+\usepackage[ruled]{algorithm2e} % For algorithms
+\renewcommand{\algorithmcfname}{ALGORITHM}
+\SetAlFnt{\small}
+\SetAlCapFnt{\small}
+\SetAlCapNameFnt{\small}
+\SetAlCapHSkip{0pt}
+\IncMargin{-\parindent}
+
+\begin{document}
+
+\title[Information Diffusion in Grid-like Social Networks]{Information Diffusion in Grid-like Social Networks}  
+\author{Guangyu Dong}
+\affiliation{%
+  \institution{University of Illinois at Urbana-Champaign}
+  \streetaddress{201 N Goodwin Street}
+  \city{Urbana}
+  \state{IL}
+  \postcode{61801}
+  \country{USA}
+}
+\author{Randolph Hill}
+\affiliation{%
+  \institution{University of Illinois at Urbana-Champaign}
+  \streetaddress{201 N Goodwin Street}
+  \city{Urbana}
+  \state{IL}
+  \postcode{61801}
+  \country{USA}
+}
+\author{Vasileios Livanos}
+\orcid{0000-0002-3425-0409}
+\affiliation{%
+  \institution{University of Illinois at Urbana-Champaign}
+  \streetaddress{201 N Goodwin Street}
+  \city{Urbana}
+  \state{IL}
+  \postcode{61801}
+  \country{USA}
 }
 
-\title{
-Information Diffusion in Grid-like Social Networks
-}
+%\date{}
 
-\date{}
+% note that the abstract must come before \maketitle
+\begin{abstract}
+\par In this paper we study how fast information propagates through various grid-like social networks. We
+start by developing a model for information propagation in a general network and utilize time inhomogeneous
+Markov chains to provide an upper bound on the \textit{diffusion rate} of information of any
+general network. Through this model, we observe that as nodes in a $4$-regular grid graph start forming
+new edges with other nodes, the diffusion rate of the network decreases exponentially. Finally, we perform
+several simulations and note that our initial results confirm our theoretical analysis.
+\end{abstract}
 
-\begin{document} \maketitle
+% note: this command has been disabled to remove the ACM copyright block. Sorry...
+%\thanks{This work is supported by the National Science Foundation, under grant CNS-0435060, grant CCR-0325197 and grant EN-CS-0329609.}
+
+\maketitle
+
 
 \section{Introduction}
+
+\par In our lives, every single one of us is a part of several social networks. These social networks, besides
+providing us with a means of communication with other individuals, perform another role; that of information
+distribution. Indeed, through our interactions with other people we obtain several pieces of information every
+day. This fact is actually extremely integral in our decision-making process, as we use this information to
+make decisions that may potentially improve our quality of life. Examples of such phenomena include asking one's
+friends and acquaintances who they believe to be the best doctor in a particular specialty, or who is their
+current car mechanic and how satisfied they are with them. These kind of questions provide the motivation to
+our work, which attempts to discern how fast this information can spread through a social network.
+
+\par While this question is important in every setting, it is extremely difficult to analyze in the general case.
+For that reason, we focus mainly on grid-like network structures, in an attempt to obtain more precise results.
+Specifically, we consider a simple, $4$-regular graph as a basis, and compare the information's
+\textit{diffusion rate} in this graph with that of two other graphs, variants of the plain grid. We note, however,
+that our characterization of the diffusion rate of a graph -- for which a closed-form characterization was, to the
+best of our knowledge, not known -- is defined for any network structure, which is an important step in getting
+similar results in different, more general network structures.
+
+\par Critical to the development of our model was the introduction of ideas from stochastic processes and ergodic
+theory. Specifically, we formulate the problem as a question about expected hitting times of a time inhomogeneous
+Markov chain, and use state-of-the-art techniques to develop novel theoretical results about this problem. While
+time homogeneous Markov chains have been studied a lot in literature and many standard results about them are known,
+their inhomogeneous variant has, as of yet, escaped most attempts made towards its analysis. Thus, not many results
+about them are known, which in turn makes our results, albeit particularly model-specific, one of few such
+developments in the field and adds to their significance.
+
+\par Finally, we performed a series of simulations on these three network structures and oberved that, in most cases,
+the simulation results seem to agree with the results predicted by our model. We take this to be at least a partial
+confirmation that our approach is a correct and important step in understanding more about how information is
+spread through a social network.
+
+
+\section{Related Work}
+
+\par 
+
+
+\section{Theoretical Analysis}
+
+\subsection{Markov Chain Model}
+
+\subsection{Diffusion Rate Bounds}
+
+\section{Simulations}
+
+\section{Conclusion}
 
 \par Consider $n$ agents that interact with each other in a social network. Each agent $i$ has a specific set of other agents
 that they interact with, which is called the \textit{neighborhood} of $i$ and is denoted by $\mathcal{N}_i$. In this network,
@@ -119,7 +203,7 @@ p f^*_{ij}(t)
 This approximation makes sense only for $p << f^*_{ij}(t)$, therefore we limit our analysis to cases where $p$ is significantly
 small.
 
-\par While the solution to (\ref{eq:opt-prog}) is not trivial, we assume that all agents are able to solve it and to calculate
+\par While the solution to \eqref{eq:opt-prog} is not trivial, we assume that all agents are able to solve it and to calculate
 their best-response. Furthermore, it should be clear that since $p > 0$, given infinite time, all agents will eventually learn
 the service provider that offers the highest quality for their type in their connected component, through their communication with
 the agents of the same type. But this immediately raises another question; what is the rate of diffusion for this information and,
@@ -215,12 +299,17 @@ Markov chains.
 varying many paramteres to see their effect on the network. Our hope is that these simulations confirm the theoretical
 results that we develop, or provide some insight that highlights the limitations of our theoretical analysis.
 
-%\label{Bibliography}
 
-%\lhead{\emph{Bibliography}}
+\begin{acks}
+	
+	The authors would like to thank Robert Andrews from the University of
+	Illinois at Urbana-Champaign for providing critical insight on the
+	theoretical analysis of our model.
+	
+\end{acks}
 
-%\bibliographystyle{abbrv}
-
-%\bibliography{report} % The references (bibliography) information are stored in the file named "Bibliography.bib"
+% Bibliography
+\bibliographystyle{ACM-Reference-Format}
+\bibliography{report}
 
 \end{document}
