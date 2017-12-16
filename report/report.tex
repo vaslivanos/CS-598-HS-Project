@@ -68,9 +68,9 @@
 \begin{abstract}
 \par In this paper we study how fast information propagates through various grid-like social networks. We
 start by developing a model for information propagation in a general network and utilize time inhomogeneous
-Markov chains to provide an upper bound on the \textit{diffusion rate} of information of any
+Markov chains to provide a lower bound on the \textit{diffusion rate} of information of any
 general network. Through this model, we observe that as nodes in a $4$-regular grid graph start forming
-new edges with other nodes, the diffusion rate of the network decreases exponentially. Finally, we perform
+new edges with other nodes, the diffusion rate of the network increases exponentially. Finally, we perform
 several simulations and note that our initial results confirm our theoretical analysis.
 \end{abstract}
 
@@ -141,33 +141,34 @@ significant quantitative upper bounds on the expected mixing and hitting times o
 
 \section{Theoretical Analysis}
 
-\subsection{Markov Chain Model}
-
-\subsection{Diffusion Rate Bounds}
-
-\section{Simulations}
-
-\section{Conclusion}
+\par In this section we present our main theoretical contributions. We start with some necessary definitions and background,
+before we present our model which is based on time inhomogeneous Markov chains. We then use this model to derive a
+characterization of the diffusion rate of information in any general graph. Finally, we specialize our model to several
+variants of grid-like graphs and compare their diffusion rate.
 
 \par Consider $n$ agents that interact with each other in a social network. Each agent $i$ has a specific set of other agents
 that they interact with, which is called the \textit{neighborhood} of $i$ and is denoted by $\mathcal{N}_i$. In this network,
 each agent has a set of strategies available to them. Specifically, agent $i$ proposes an \textit{interaction frequency}
 $f_{ij} \in \mathbb{R}$ to every agent $j \in \mathcal{N}_i$. Similarly, each agent $j$ proposes an
-interaction frequency $f_{ji}$ to $i$. The frequency that they end up interacting at is simply the minimum of the two
-proposals. However, in real social networks, the agents have different preferences for who to interact with. To capture this
+interaction frequency $f_{ji}$ to $i$. The frequency $f^*_{ij} = f^*_{ji}$ that they end up interacting at is simply
+\[
+f^*_{ij} = \min { \{ f_{ij}, f_{ji} \} }
+\]
+
+\par However, in real social networks, the agents have different preferences for who to interact with. To capture this
 in our model, we assign $w_{ij}$ to be the \textit{weight} $i$ places on $j$, or similarly how much $i$ values the interaction
 with $j$. Further motivated by real social networks, we assign all agents a uniform ``budget" of interaction frequency $\beta$
 that they cannot exceed.
 
 \par In our social network, we assume that there exist some external \textit{service providers} that provide some service of a
 certain quality to the agents. We assume a rather complicated framework, where each agent $i$ has a specific \textit{type},
-denoted by $\theta_i \in [0, 1]$ and there exist $k$ distinct service providers that are not a part of the social network. Each
-service provider has a different quality of service for each agent type, however the quality they provide is fixed for all agents
-of the same type. This is again an attempt to model real-life social networks, where te quality of service an agent receives
-is based on specific attributes they possess which in turn classify the agent as being of a certain type. While we start by
-analyzing the case where the agent types are drawn at random from the uniform distribution, we believe it is of great
-importance to also study cases where neighboring agents have a greater chance of being of the same type. This implies a
-clustering of agents' types, which is motivated by the homophily that real social networks exhibit in general.
+denoted by $\theta_i \in [0, 1]$ out of $N_\theta$ possible types, and there exist $k$ distinct service providers that are not a
+part of the social network. Each service provider has a different quality of service for each agent type, however the quality they
+provide is fixed for all agents of the same type. This is again an attempt to model real-life social networks, where the quality
+of service an agent receives is based on specific attributes they possess which in turn classify the agent as being of a certain
+type. While we start byanalyzing the case where the agent types are drawn at random from the uniform distribution, we believe it
+is of great importance to also study cases where neighboring agents have a greater chance of being of the same type. This implies
+a clustering of agents' types, which is motivated by the homophily that real social networks exhibit in general.
 
 \par We make the following assumption. Each agent $i$ initially has a service provider chosen uniformly at random, and receives a
 specific quality $q_i \in [0, 1]$ from them. Furthermore, $i$ gets some utility by communicating with all agents in their
@@ -175,20 +176,18 @@ neighborhood but also by learning about different service providers with higher 
 that, as $i$ communicates with a neighbor $j$ of the same type, for each unit of communication the probability that $i$ learns
 $j$'s quality is $p$, which is constant and uniform for all agents in the network. Therefore, since between time $t$ and $t+1$
 they interact $f^*_{ij}(t)$ times, the probability that $i$ learns $q_j$ is
-
 \[
 1 - {\left( 1 - p \right)}^{f^*_{ij}(t)}
 \]
 
-\par Also, since agents of different types exhibit different qualities from the same service provider, we make the assumption
-that if $j$ is a neighbor of $i$, then $i$ is not interested in learning $q_j$ and therefore agents of type different than
-$\theta_i$ contribute in $i$'s utility simply through their interaction and not by letting $i$ know about the existence of a
-service provider with higher quality. Our final assumption is that once $i$ learns of a different service provider that offers
-higher quality service to agents with type $\theta_i$, they immediately switch to that provider and start receiving the
-aforementioned higher quality.
+\par Also, since agents of different type exhibit different qualities from the same service provider, we make the assumption
+that if $j$ is a neighbor of $i$ and $\theta_i \neq \theta_j$, then $i$ is not interested in learning $q_j$ and therefore
+agents of type different than $\theta_i$ contribute in $i$'s utility simply through their interaction and not by letting $i$
+know about the existence of a service provider with higher quality. Our final assumption is that once $i$ learns of a different
+service provider that offers higher quality service to agents with type $\theta_i$, they immediately switch to that provider
+and start receiving the aforementioned higher quality.
 
 \par Thus, we model $i$'s utility by
-
 \begin{equation}\label{eq:util}
 u_i(t) = \sum_{j \in \mathcal{N}_i} {w_{ij} f^*_{ij}(t) \left( \beta - f^*_{ij}(t) \right) } +
 \sum_{j \in \mathcal{Z}_i} {\Ex \left[ \min \left( q_j - q_i, 0 \right) \right] \left( 1 - {\left( 1 - p \right)}^{f^*_{ij}(t)} \right) }
@@ -199,127 +198,255 @@ time step $t$ one agent is chosen at random and updates their proposals to those
 This dynamics is called \textit{best-response}, since $i$ plays their best-response strategy to the strategies played by all
 other players, assuming that they remain fixed at these strategies, at least for time $t$. It is easy to see that to play their
 best-response strategy at time $t$, $i$ has to solve the following convex optimization problem for variables $f_{ij}(t)$
-
 \begin{align}\label{eq:opt-prog}
 \max & \: \: \: \sum_{j \in \mathcal{N}^i} {w_{ij} f^*_{ij}(t) \left( \beta - f^*_{ij}(t) \right) } +
 \sum_{j \in \mathcal{Z}_i} {\Ex \left[ \min \left( q_j - q_i, 0 \right) \right] \left( 1 - {\left( 1 - p \right)}^{f^*_{ij}(t)} \right) } \\
 s.t. & \: \: \: \sum_{j \in \mathcal{N}^i} {f_{ij}} \leq \beta \nonumber \\
-& \: \: \: f_{ij} \geq 0, \: \: \forall j \in \mathcal{N}^i \nonumber \\
-& \: \: \: f_{ij} \leq f_{ji}, \: \: \forall j \in \mathcal{N}^i \nonumber
+& \: \: \: f_{ij} \geq 0, \: \: \forall j \in \mathcal{N}_i \nonumber \\
+& \: \: \: f_{ij} \leq f_{ji}, \: \: \forall j \in \mathcal{N}_i \nonumber
 \end{align}
 
 \par This problem will in general be very difficult to solve. In order to make it more tractable, we consider an approximation
 to each agent's utility, where we replace
-
 \[
 1 - {\left( 1 - p \right)}^{f^*_{ij}(t)}
 \]
 
 with 
-
 \[
 p f^*_{ij}(t)
 \]
 
 This approximation makes sense only for $p << f^*_{ij}(t)$, therefore we limit our analysis to cases where $p$ is significantly
-small.
+small, compared to the frequency proposals.
 
 \par While the solution to \eqref{eq:opt-prog} is not trivial, we assume that all agents are able to solve it and to calculate
-their best-response. Furthermore, it should be clear that since $p > 0$, given infinite time, all agents will eventually learn
+their best-response. Furthermore, it should be clear that since $p > 0$, given infinite time, all agents eventually learn
 the service provider that offers the highest quality for their type in their connected component, through their communication with
 the agents of the same type. But this immediately raises another question; what is the rate of diffusion for this information and,
-more importantly, how is it affected by -- seemingly -- small changes in the network structure? Our project's motivation is to
-attempt to answer this question for three different grid-like graphs by analyzing the rate of information diffusion in each one.
+more importantly, how is it affected by -- seemingly -- small changes in the network structure? Before we are ready to provide an
+answer to this question, or even provide a clear definition of the diffusion rate in a graph, we have to introduce our Markov chain
+model, which will make all such concepts significantly easier to analyze.
 
-\subsection{The plain $2$-dimensional grid}
+\subsection{Markov Chain Model}
 
-\par Consider a graph $G = (V, E)$ where the vertex are arranged in a $2$-dimensional grid, and every edge is either vertical
-or horizontal. We are interested in calculating the rate of information diffusion in this graph. Suppose that all agents are of
-the same type, $\theta$, and there exists only one agent that has the service provider with the highest quality, without loss of
-generality, let that agent be the one represented by the upper left corner vertex in the grid. We understand that this is the
-worst-case scenario for this graph, because more agent types would imply that the information diffusion analysis splits to many
-smaller graphs, and if more agents have the service provider with the highest quality then the probability that this information
-spreads rises. In both cases, the rate of information diffusion would be faster.
+\par For a specific time $t$, we define two sets of agents below
+\[
+\mathcal{I}(t) = \{ i \mid q_i \geq q_j \quad \forall j : \: \theta_j = \theta_i \}
+\]
+\[
+\mathcal{F}(t) = \{ i \mid \exists j \in \mathcal{I}(t) \cap \mathcal{N}_i : \: \theta_j = \theta_i \land q_j > q_i \}
+\]
 
-\par We use this graph as a starting point for our analysis, because it simplifies our model, while being the worst-case scenario
-for this graph structure. However, later we move on to the general case with multiple agent types and agents who have the
-service provider of the highest quality.
+\par It is understood that the agents in $\mathcal{I}(t)$ are the ones that possess the information at time $t$, while the agents
+in $\mathcal{F}(t)$ are the agents which do not possess the information at time $t$, but have a neighbor that does. Equivalently,
+$\mathcal{F}(t)$ is the set of agents to which the information may spread next. Next, we define a random variable $X_t$ which
+represents the number of agents who have the service provider of the highest quality. In our model, we assume that $X_0 = 1$,
+in the worst-case, and we want to calculate the information diffusion rate of $G$ defined below.
 
-\subsection{The extended $2$-dimensional grid}
+\begin{definition}[Diffusion Rate]
+Consider a graph $G$ of $n$ agents. Then the \textbf{diffusion rate} of information in $G$ is
+\[
+\gamma_G = \frac{1}{\min_{t > 0} { \{ X_t = n \} }}
+\]
+\end{definition}
 
-\par Next, we extend the previous graph model by allowing each node $i$ to form one long-range edge with some other node $j$ that
-does not immediately communicate with $i$ through the grid structure. However, the probability distribution for this edge
-formation is not random, but instead is proportional to $\frac{1}{d^2}$, where $d$ is the Manhattan distance, or equivalently
-the $L_1$ norm, defined as
+\par Consider a Markov chain on $X_t$ that is essentially a path graph of size $n$, enhanced with self-loops. Our initial state
+is $X_0 = 1$ and, if we define the event $A^k_t$ as
+\[
+A^k_t = \{ X_t \geq k \mid X_{t-1} = k-1 \}
+\]
+
+for $k, t \geq 1$, then we would like to calculate the hitting time of the event $A^n_t$ which is the expected minimum $t$ for
+which this event comes true for the first time. While normally we can analyze such hitting times on Markov chains with ease,
+our inhomogeneous Markov chain provides an extra level of difficulty, due to the fact that the transition probabilities vary
+with time. For that analysis, we need to define
+\[
+C_t = \left\{ \{ i, j\} \in E(G) \mid i \in \mathcal{I}(t), j \in \mathcal{F}(t), \theta_i = \theta_j \right\}
+\]
+
+as the set of all possible edges through which the information could leak through at time $t$.
+
+\par Next, we present one of our main contributions, a lower bound on the information diffusion rate for any graph $G$,
+or equivalently, an upper bound on the expected mixing time of our Markov chain on $G$
+
+\begin{theorem}
+Consider a graph $G$ of $n$ agents. Then, if
+\[
+\delta = \min_{t, \{ i, j \} \in C_t} {p f^*_{ij}(t)} > 0
+\]
+
+the diffusion rate of $G$ is
+\[
+\gamma_G \geq \frac{1}{ n \cdot \sum_{t = 1}^{\infty} {t \left( 1 - {\left( 1 - \delta \right)}^{|C_t|} \right) \cdot \prod_{\lambda = 1}^{t-1} { {\left( 1 - \delta \right)}^{|C_\lambda|} } } }
+\]
+\end{theorem}
+
+
+\begin{proof}
+\par We know that
+\[
+\Pr \left[ A^k_t \right] \geq 1 - \prod_{ \{i, j \} \in C_t} {\left( 1 - p f^*_{ij}(t) \right) }
+\]
+
+for any $k \geq 1$. We also know by \cite{SC1} that if we can lower bound the non-zero interactions between the agents by
+a fixed constant $\delta > 0$, then our time inhomogeneous Markov chain converges almost surely to its (unique) stationary
+distribution. Thus, for
+\[
+\delta = \min_{t, \{ i, j \} \in C_t} {p f^*_{ij}(t)}
+\]
+
+we get
+\begin{equation}\label{probA}
+\Pr \left[ A^k_t \right] \geq 1 - \prod_{ \{ i, j \} \in C_t } {\left( 1 - \delta \right) } = 1 - { \left( 1 - \delta \right) }^{|C_t|}
+\end{equation}
+
+\par Since we now know that our Markov chain converges, we can calculate the expected hitting time of $A^k_t$ for any
+$k$
+\begin{align}\label{hittime}
+\mathbb{E}_t \left[ A^k_t \right] & = \sum_{t = 1}^{\infty} {t \Pr \left[ A^k_t \right] \cdot \prod_{\lambda = 1}^{t-1} {\left( 1 - \Pr \left[ A^k_\lambda \right] \right)} } \\ \nonumber
+\mathbb{E}_t \left[ A^k_t \right] & = \sum_{t = 1}^{\infty} {t \left( 1 - {\left( 1 - \delta \right)}^{|C_t|} \right) \cdot \prod_{\lambda = 1}^{t-1} { {\left( 1 - \delta \right)}^{|C_\lambda|} } }
+\end{align}
+
+\par Finally, since the information can spread at most $n$ times, we know that there are only $n$ possible values of $k$
+in $A^k_t$. Thus, the expected time it will take for the information to spread to all $n$ agents is
+\[
+\mathbb{E}_t \left[ A^n_t \right] \leq n \cdot \sum_{t = 1}^{\infty} {t \left( 1 - {\left( 1 - \delta \right)}^{|C_t|} \right) \cdot \prod_{\lambda = 1}^{t-1} { {\left( 1 - \delta \right)}^{|C_\lambda|} } }
+\]
+
+and we can provide a lower bound on the diffusion rate of $G$
+\[
+\gamma_G \geq \frac{1}{ n \cdot \sum_{t = 1}^{\infty} {t \left( 1 - {\left( 1 - \delta \right)}^{|C_t|} \right) \cdot \prod_{\lambda = 1}^{t-1} { {\left( 1 - \delta \right)}^{|C_\lambda|} } } } \qedhere
+\]
+\end{proof}
+
+\subsection{Diffusion Rate in Grid-like Graphs}
+
+\par Suppose $G$ is a $4$-regular graph of $n$ nodes where the vertex are arranged in a $2$-dimensional grid, and every edge
+is either vertical or horizontal. We call this graph a \textit{plain grid}, and we use it as a basis for our analysis of its
+variants. We denote the diffusion rate of the plain grid by $\gamma_{PG}$. Next, we define two variants of the plain grid
+and compare their diffusion rates.
+
+\subsubsection{\textbf{The unbiased grid}}
+
+\par In the \textit{unbiased grid}, we extend the previous graph model by allowing each node $i$ to form one long-range edge
+with some other node $j$ that does not immediately communicate with $i$ through the grid structure. However, the probability
+distribution for this edge formation is not random, but instead is proportional to $\frac{1}{d^2}$, where $d$ is the Manhattan
+distance, or equivalently the $L_1$ norm, defined as
 
 \[
 d(i, j) = |i.x - j.x| + |i.y - j.y|
 \]
 
 where $i.x$ denotes the row and $i.y$ denotes the column of agent $i$ in the grid. Note here that the edge formation
-distribution does not depend on the types of agents, therefore we expect that most agents will not form an edge with
-an agent of the same type. However, for those that will, the probability that they learn of a service provider with higher
-quality for their type rises; albeit only by a small fraction. Thus, when we calculate the rate of information diffusion for
-this graph, we expect it to be smaller than that of the plain $2$-d grid, but not by a significant factor.
+distribution does not depend on the types of agents, therefore, for sufficiently large $N_\theta$, we expect that most agents
+will not form an edge with an agent of the same type. However, for those that will, the probability that they learn of a service
+provider with higher quality for their type rises. We formalize this intuition with the following theorem
 
-\subsection{The biased $2$-dimensional grid}
-
-\par This previous observation naturally leads us to study a small variation of the previous graph model, namely the biased
-$2$-d grid. In this model, agents again form long-range edges to other agents in the grid with probablities proportional
-to $\frac{1}{d^2}$, but they are biased towards forming an edge with an agent of the same type as them. Therefore, we
-assume that, when an agent $i$ forms a long-range edge, agents with type $\theta_i$ are $c$ times more likely to be chosen
-by $i$ than agents of different type.
-
-\par We plan on varying the parameter $c$ to observe how the rate of information diffusion behaves, compared to the two
-previous models, starting from $c = 2$. Intuitively, we expect this network structure to exhibit a very significant
-difference in the rate of information diffusion for $c \geq c_{cr}$. Our main goal with this network structure is to
-calculate this $c_{cr}$. The results we get may hopefully reveal why real-life social networks exhibit homophily and
-arrange themselves in type clusters.
-
-
-\section{Initial Results}
-
-\par In this final section, we provide some initial results of our theoretical analysis. Hopefully, the ideas presented
-here will function as a basis for our main goals of this problem. For a specific time $t$, we define two sets of agents below
-
+\begin{theorem}
+Consider an instance $PG$ of the plain grid graph with $n$ nodes. Then, the expected increase of $|C_t|$ in the
+corresponding unbiased grid $UG$ created from $PG$ is
 \[
-\mathcal{I}(t) = \{ i : i \: \: \text{has the service provider of the highest quality.} \}
+\mathbb{E} \left[ |C^{UG}_t| - |C^{PG}_t| \right] = \frac{\left( \sum_{k = 2}^{2n} {\frac{1}{k^2}} \right) |\mathcal{I}(t)| \left( 1 - \frac{|\mathcal{I}(t)|}{n} \right) }{N_\theta}
+\]
+\end{theorem}
+
+
+\begin{proof}
+\par The probability for a new edge $e = \{ i, j \}$ to be in $C_t$ is
+\begin{equation}\label{probE}
+\Pr \left[ e \in C_t \right] = \Pr \left[ \theta_i = \theta_j \right] \cdot \Pr \left[ j \notin \mathcal{I}(t) \mid \theta_i = \theta_j \right]
+\end{equation}
+
+\par Assuming the distribution of agents' types is uniform, we have
+\[
+\Pr \left[ \theta_i = \theta_j \right] = \frac{1}{N_\theta}
 \]
 
+and by using the fact that the events $\{ \theta_i = \theta_j \}$ and $\{ j \notin \mathcal{I}(t) \}$ are independent in
+the unbiased grid, we get
 \[
-\mathcal{F}(t) = \{ i : i \: \: \text{does not have the service provider of the highest quality, but some} \: \: j \in \mathcal{N}_i \: \: \text{does.} \}
+\Pr \left[ j \notin \mathcal{I}(t) \mid \theta_i = \theta_j \right] = \Pr \left[ j \notin \mathcal{I}(t) \right] = \left( \sum_{k = 2}^{2n} {\frac{1}{k^2}} \right) \left( 1 - \frac{|\mathcal{I}(t)|}{n} \right)
 \]
 
-\par It is understood that the agents in $\mathcal{I}(t)$ are the ones who know the information at time $t$, while the agents
-in $\mathcal{F}(t)$ are the agents to which the information will spread next. Next, we define a random variable $X_t$ which
-represents the number of agents who have the service provider of the highest quality. Therefore, in our worst-case model, we
-assume $X_0 = 1$ and we want to calculate
-
+\par Combining the above equalities, we get
 \[
-\lambda^* = \min_{\lambda > 0} { \{ X_\lambda = n \} }
+\Pr \left[ e \in C_t \right] = \frac{1}{N_\theta} \left( \sum_{k = 2}^{2n} {\frac{1}{k^2}} \right) \left( 1 - \frac{|\mathcal{I}(t)|}{n} \right)
 \]
 
-\par We now present our main contribution so far. Consider a Markov chain on $X_t$ that is essentially a path graph of size $n$,
-enhanced with self-loops. Our initial state is $X_0 = 1$ and we would like to calculate the hitting time of the event
-$\{ X_t \geq n \}$; meaning the expected minimum $t$ for which this event comes true. While normally we can analyze such
-hitting times on Markov chains with ease, our Markov chain has an extra level of difficulty, due to the fact that the transition
-probabilities vary with time. Let $F = |\mathcal{F}(t)|$, and consider an agent $i \in \mathcal{I}(t)$ and an agent
-$j \in \mathcal{F}(t)$. Then, at time $t$, we get
+because $\Pr \left[ j \notin \mathcal{I}(t) \right]$ is calculated by fixing a new neighbor $j$ of $i$ (with probability
+$\frac{1}{d^2}$ for $d \geq 2$), and then calculating the probability that $j \notin \mathcal{I}(t)$.
 
+\par Therefore, we understand that the increase in $|C_t|$ on expectation is
+\begin{equation}\label{incrUG}
+\mathbb{E} \left[ |C^{UG}_t| - |C^{PG}_t| \right] = \frac{\left( \sum_{k = 2}^{2n} {\frac{1}{k^2}} \right) |\mathcal{I}(t)| \left( 1 - \frac{|\mathcal{I}(t)|}{n} \right) }{N_\theta} \qedhere
+\end{equation}
+\end{proof}
+
+\par Note here that the diffusion rate $\gamma_G$ depends exponentially on $|C_t|$. Therefore, we understand that the increase
+in diffusion rate between the unbiased and the plain grids is exponential. This fact alone is surprising, but we continue
+by generalizing it to a larger family of graphs.
+
+\subsubsection{\textbf{The biased grid}}
+
+\par This previous observation naturally leads us to study a generalization of the previous graph model which we call the
+\textit{biased grid}. In this graph structure, agents again form long-range edges to other agents in the grid with
+probablities proportional to $\frac{1}{d^2}$, but they are biased towards forming an edge with an agent of the same type
+as them. Therefore, we assume that, when an agent $i$ forms a long-range edge, agents with type $\theta_i$ are $b$ times
+more likely to be chosen by $i$ than agents of different type. We call this parameter $b$, which directly affects the graph's
+diffusion rate, the \textit{bias} of $G$.
+
+\par In the biased case, the probability that an edge $e$ is in $C_t$ changes, as the events $\{ \theta_i = \theta_j \}$
+and $\{ j \notin \mathcal{I}(t) \}$ are not independent anymore. It turns out that the expected increase in the diffusion
+rate of the biased grid compared to the unbiased grid is again exponential and behaves in a nice linear fashion
+depending on the bias $b$, as is demonstrated by the following theorem
+
+\begin{theorem}
+Consider an instance $PG$ of the plain grid graph with $n$ nodes. Then, the expected increase of $|C_t|$ in the
+corresponding biased grid $BG$ with bias $b$ created from $PG$ is
 \[
-Pr[X_{t+1} = k + z | X_t = k] = \binom{F}{z} { \left( p f^*_{ij}(t) \right) }^z { \left( 1 - p f^*_{ij}(t) \right) }^{F-z}
+\mathbb{E} \left[ |C^{BG}_t| - |C^{PG}_t| \right] = \frac{b \cdot \left( \sum_{k = 2}^{2n} {\frac{1}{k^2}} \right) |\mathcal{I}(t)| \left( 1 - \frac{|\mathcal{I}(t)|}{n} \right) }{N_\theta} = b \cdot \mathbb{E} \left[ |C^{UG}_t| - |C^{PG}_t| \right] 
+\]
+\end{theorem}
+
+
+\begin{proof}
+\par As stated above, the events $\{ \theta_i = \theta_j \}$ and $\{ j \notin \mathcal{I}(t) \}$ are not independent
+anymore, thus the probability that an edge $e$ is in $C_t$ changes. We know that
+\[
+\Pr \left[ \{i, j \} \text{is formed} \right] = \begin{cases}
+\frac{b}{d^2}, & \theta_i = \theta_j \\ 
+\frac{1}{d^2}, & \theta_i \neq \theta_j
+\end{cases}
 \]
 
-\par Such Markov chains with time-varying transition probabilities are called \textit{time inhomogeneous Markov chains}, and
-while there have been several attempts to argue about their convergence properties and analyze them, to the best of our
-knowledge no significant convergence results are known them. We hope our analysis for this project sheds light both to
-these models discussed earlier, but also provides new tools that contribute to the analysis of generic time-inhomogeneous
-Markov chains.
+\par Utilizing the above equation, we can write
+\[
+\Pr \left[ e \in C_t \right] = \frac{1}{N_\theta} \left( \sum_{k = 2}^{2n} {\frac{b}{k^2}} \right) \left( 1 - \frac{|\mathcal{I}(t)|}{n} \right)
+\]
 
-\par Finally, we plan on performing several simulations that compare the rate of diffusion in the aforementioned models,
-varying many paramteres to see their effect on the network. Our hope is that these simulations confirm the theoretical
-results that we develop, or provide some insight that highlights the limitations of our theoretical analysis.
+\par Thus
 
+\[
+\mathbb{E} \left[ |C^{BG}_t| - |C^{PG}_t| \right] = \frac{b \cdot \left( \sum_{k = 2}^{2n} {\frac{1}{k^2}} \right) |\mathcal{I}(t)| \left( 1 - \frac{|\mathcal{I}(t)|}{n} \right) }{N_\theta} = b \cdot \mathbb{E} \left[ |C^{UG}_t| - |C^{PG}_t| \right] \qedhere
+\]
+\end{proof}
+
+\par We observe that, once again, the increase between the biased and the plain grids in $|C_t|$ -- thus also in $\gamma_G$
+-- is exponential. However, the increase in diffusion rate between the biased and unbiased grids is also exponential!
+Specifically, for $b = 2$, we have
+\[
+\mathbb{E} \left[ |C^{BG}_t| - |C^{UG}_t| \right] = \mathbb{E} \left[ |C^{UG}_t| - |C^{PG}_t| \right]
+\]
+
+thus (because $\gamma_G$ depends exponentially on $|C_t|$), if we observe an increase of $a$ in the diffusion rate between
+the unbiased and plain grids, we expect to see an increase of $a^2$ (or $a^b$ in general) between the biased and plain grids.
+Equivalently, we expect to see an increase of $a$ (or $a^{b-1}$ in general) between the biased and unbiased grids.
+
+
+\section{Simulations}
+
+\section{Conclusion}
 
 %\begin{acks}
 %	
