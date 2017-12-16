@@ -1,0 +1,471 @@
+%%% ====================================================================
+%%%  BibTeX-file{
+%%%     author          = "Gerry Murray",
+%%%     version         = "1.2",
+%%%     date            = "2 April 2012",
+%%%     filename        = "acmsmall-sample-bibfile.bib",
+%%%     address         = "ACM, NY",
+%%%     email           = "murray at hq.acm.org",
+%%%     codetable       = "ISO/ASCII",
+%%%     keywords        = "ACM Reference Format, bibliography, citation, references",
+%%%     supported       = "yes",
+%%%     docstring       = "This BibTeX database file contains 'bibdata' entries
+%%%                        that 'match' the examples provided in the Specifications Document
+%%%                        AND, also, 'legacy'-type bibs. It should assist authors in 
+%%%                        choosing the 'correct' at-bibtype and necessary bib-fields
+%%%                        so as to obtain the appropriate ACM Reference Format output. 
+%%%			   It also contains many 'Standard Abbreviations'. "
+%%%  }
+%%% ====================================================================
+
+% Journals
+
+% First the Full Name is given, then the abbreviation used in the AMS Math
+% Reviews, with an indication if it could not be found there.
+% Note the 2nd overwrites the 1st, so swap them if you want the full name.
+
+ %{AMS}
+ @String{AMSTrans = "American Mathematical Society Translations" }
+ @String{AMSTrans = "Amer. Math. Soc. Transl." }
+ @String{BullAMS = "Bulletin of the American Mathematical Society" }
+ @String{BullAMS = "Bull. Amer. Math. Soc." }
+ @String{ProcAMS = "Proceedings of the American Mathematical Society" }
+ @String{ProcAMS = "Proc. Amer. Math. Soc." }
+ @String{TransAMS = "Transactions of the American Mathematical Society" }
+ @String{TransAMS = "Trans. Amer. Math. Soc." }
+
+ %ACM
+ @String{CACM = "Communications of the {ACM}" }
+ @String{CACM = "Commun. {ACM}" }
+ @String{CompServ = "Comput. Surveys" }
+ @String{JACM = "J. ACM" }
+ @String{ACMMathSoft = "{ACM} Transactions on Mathematical Software" }
+ @String{ACMMathSoft = "{ACM} Trans. Math. Software" }
+ @String{SIGNUM = "{ACM} {SIGNUM} Newsletter" }
+ @String{SIGNUM = "{ACM} {SIGNUM} Newslett." }
+
+ @String{AmerSocio = "American Journal of Sociology" }
+ @String{AmerStatAssoc = "Journal of the American Statistical Association" }
+ @String{AmerStatAssoc = "J. Amer. Statist. Assoc." }
+ @String{ApplMathComp = "Applied Mathematics and Computation" }
+ @String{ApplMathComp = "Appl. Math. Comput." }
+ @String{AmerMathMonthly = "American Mathematical Monthly" }
+ @String{AmerMathMonthly = "Amer. Math. Monthly" }
+ @String{BIT = "{BIT}" }
+ @String{BritStatPsych = "British Journal of Mathematical and Statistical
+          Psychology" }
+ @String{BritStatPsych = "Brit. J. Math. Statist. Psych." }
+ @String{CanMathBull = "Canadian Mathematical Bulletin" }
+ @String{CanMathBull = "Canad. Math. Bull." }
+ @String{CompApplMath = "Journal of Computational and Applied Mathematics" }
+ @String{CompApplMath = "J. Comput. Appl. Math." }
+ @String{CompPhys = "Journal of Computational Physics" }
+ @String{CompPhys = "J. Comput. Phys." }
+ @String{CompStruct = "Computers and Structures" }
+ @String{CompStruct = "Comput. \& Structures" }
+ @String{CompJour = "The Computer Journal" }
+ @String{CompJour = "Comput. J." }
+ @String{CompSysSci = "Journal of Computer and System Sciences" }
+ @String{CompSysSci = "J. Comput. System Sci." }
+ @String{Computing = "Computing" }
+ @String{ContempMath = "Contemporary Mathematics" }
+ @String{ContempMath = "Contemp. Math." }
+ @String{Crelle = "Crelle's Journal" }
+ @String{GiornaleMath = "Giornale di Mathematiche" }
+ @String{GiornaleMath = "Giorn. Mat." } % didn't find in AMS MR., ibid.
+
+ %IEEE
+ @String{Computer = "{IEEE} Computer" }
+ @String{IEEETransComp = "{IEEE} Transactions on Computers" }
+ @String{IEEETransComp = "{IEEE} Trans. Comput." }
+ @String{IEEETransAC = "{IEEE} Transactions on Automatic Control" }
+ @String{IEEETransAC = "{IEEE} Trans. Automat. Control" }
+ @String{IEEESpec = "{IEEE} Spectrum" } % didn't find in AMS MR
+ @String{ProcIEEE = "Proceedings of the {IEEE}" }
+ @String{ProcIEEE = "Proc. {IEEE}" } % didn't find in AMS MR
+ @String{IEEETransAeroElec = "{IEEE} Transactions on Aerospace and Electronic
+     Systems" }
+ @String{IEEETransAeroElec = "{IEEE} Trans. Aerospace Electron. Systems" }
+
+ @String{IMANumerAna = "{IMA} Journal of Numerical Analysis" }
+ @String{IMANumerAna = "{IMA} J. Numer. Anal." }
+ @String{InfProcLet = "Information Processing Letters" }
+ @String{InfProcLet = "Inform. Process. Lett." }
+ @String{InstMathApp = "Journal of the Institute of Mathematics and
+     its Applications" }
+ @String{InstMathApp = "J. Inst. Math. Appl." }
+ @String{IntControl = "International Journal of Control" }
+ @String{IntControl = "Internat. J. Control" }
+ @String{IntNumerEng = "International Journal for Numerical Methods in
+     Engineering" }
+ @String{IntNumerEng = "Internat. J. Numer. Methods Engrg." }
+ @String{IntSuper = "International Journal of Supercomputing Applications" }
+ @String{IntSuper = "Internat. J. Supercomputing Applic." } % didn't find
+%% in AMS MR
+ @String{Kibernetika = "Kibernetika" }
+ @String{JResNatBurStand = "Journal of Research of the National Bureau
+     of Standards" }
+ @String{JResNatBurStand = "J. Res. Nat. Bur. Standards" }
+ @String{LinAlgApp = "Linear Algebra and its Applications" }
+ @String{LinAlgApp = "Linear Algebra Appl." }
+ @String{MathAnaAppl = "Journal of Mathematical Analysis and Applications" }
+ @String{MathAnaAppl = "J. Math. Anal. Appl." }
+ @String{MathAnnalen = "Mathematische Annalen" }
+ @String{MathAnnalen = "Math. Ann." }
+ @String{MathPhys = "Journal of Mathematical Physics" }
+ @String{MathPhys = "J. Math. Phys." }
+ @String{MathComp = "Mathematics of Computation" }
+ @String{MathComp = "Math. Comp." }
+ @String{MathScand = "Mathematica Scandinavica" }
+ @String{MathScand = "Math. Scand." }
+ @String{TablesAidsComp = "Mathematical Tables and Other Aids to Computation" }
+ @String{TablesAidsComp = "Math. Tables Aids Comput." }
+ @String{NumerMath = "Numerische Mathematik" }
+ @String{NumerMath = "Numer. Math." }
+ @String{PacificMath = "Pacific Journal of Mathematics" }
+ @String{PacificMath = "Pacific J. Math." }
+ @String{ParDistComp = "Journal of Parallel and Distributed Computing" }
+ @String{ParDistComp = "J. Parallel and Distrib. Comput." } % didn't find
+%% in AMS MR
+ @String{ParComputing = "Parallel Computing" }
+ @String{ParComputing = "Parallel Comput." }
+ @String{PhilMag = "Philosophical Magazine" }
+ @String{PhilMag = "Philos. Mag." }
+ @String{ProcNAS = "Proceedings of the National Academy of Sciences
+                    of the USA" }
+ @String{ProcNAS = "Proc. Nat. Acad. Sci. U. S. A." }
+ @String{Psychometrika = "Psychometrika" }
+ @String{QuartMath = "Quarterly Journal of Mathematics, Oxford, Series (2)" }
+ @String{QuartMath = "Quart. J. Math. Oxford Ser. (2)" }
+ @String{QuartApplMath = "Quarterly of Applied Mathematics" }
+ @String{QuartApplMath = "Quart. Appl. Math." }
+ @String{RevueInstStat = "Review of the International Statisical Institute" }
+ @String{RevueInstStat = "Rev. Inst. Internat. Statist." }
+
+ %SIAM
+ @String{JSIAM = "Journal of the Society for Industrial and Applied
+     Mathematics" }
+ @String{JSIAM = "J. Soc. Indust. Appl. Math." }
+ @String{JSIAMB = "Journal of the Society for Industrial and Applied
+     Mathematics, Series B, Numerical Analysis" }
+ @String{JSIAMB = "J. Soc. Indust. Appl. Math. Ser. B Numer. Anal." }
+ @String{SIAMAlgMeth = "{SIAM} Journal on Algebraic and Discrete Methods" }
+ @String{SIAMAlgMeth = "{SIAM} J. Algebraic Discrete Methods" }
+ @String{SIAMAppMath = "{SIAM} Journal on Applied Mathematics" }
+ @String{SIAMAppMath = "{SIAM} J. Appl. Math." }
+ @String{SIAMComp = "{SIAM} Journal on Computing" }
+ @String{SIAMComp = "{SIAM} J. Comput." }
+ @String{SIAMMatrix = "{SIAM} Journal on Matrix Analysis and Applications" }
+ @String{SIAMMatrix = "{SIAM} J. Matrix Anal. Appl." }
+ @String{SIAMNumAnal = "{SIAM} Journal on Numerical Analysis" }
+ @String{SIAMNumAnal = "{SIAM} J. Numer. Anal." }
+ @String{SIAMReview = "{SIAM} Review" }
+ @String{SIAMReview = "{SIAM} Rev." }
+ @String{SIAMSciStat = "{SIAM} Journal on Scientific and Statistical
+     Computing" }
+ @String{SIAMSciStat = "{SIAM} J. Sci. Statist. Comput." }
+
+ @String{SoftPracExp = "Software Practice and Experience" }
+ @String{SoftPracExp = "Software Prac. Experience" } % didn't find in AMS MR
+ @String{StatScience = "Statistical Science" }
+ @String{StatScience = "Statist. Sci." }
+ @String{Techno = "Technometrics" }
+ @String{USSRCompMathPhys = "{USSR} Computational Mathematics and Mathematical
+     Physics" }
+ @String{USSRCompMathPhys = "{U. S. S. R.} Comput. Math. and Math. Phys." }
+ @String{VLSICompSys = "Journal of {VLSI} and Computer Systems" }
+ @String{VLSICompSys = "J. {VLSI} Comput. Syst." }
+ @String{ZAngewMathMech = "Zeitschrift fur Angewandte Mathematik und
+     Mechanik" }
+ @String{ZAngewMathMech = "Z. Angew. Math. Mech." }
+ @String{ZAngewMathPhys = "Zeitschrift fur Angewandte Mathematik und Physik" }
+ @String{ZAngewMathPhys = "Z. Angew. Math. Phys." }
+
+% Publishers % ================================================= |
+
+ @String{Academic = "Academic Press" }
+ @String{ACMPress = "{ACM} Press" }
+ @String{AdamHilger = "Adam Hilger" }
+ @String{AddisonWesley = "Addison-Wesley" }
+ @String{AllynBacon = "Allyn and Bacon" }
+ @String{AMS = "American Mathematical Society" }
+ @String{Birkhauser = "Birkha{\"u}ser" }
+ @String{CambridgePress = "Cambridge University Press" }
+ @String{Chelsea = "Chelsea" }
+ @String{ClaredonPress = "Claredon Press" }
+ @String{DoverPub = "Dover Publications" }
+ @String{Eyolles = "Eyolles" }
+ @String{HoltRinehartWinston = "Holt, Rinehart and Winston" }
+ @String{Interscience = "Interscience" }
+ @String{JohnsHopkinsPress = "The Johns Hopkins University Press" }
+ @String{JohnWileySons = "John Wiley and Sons" }
+ @String{Macmillan = "Macmillan" }
+ @String{MathWorks = "The Math Works Inc." }
+ @String{McGrawHill = "McGraw-Hill" }
+ @String{NatBurStd = "National Bureau of Standards" }
+ @String{NorthHolland = "North-Holland" }
+ @String{OxfordPress = "Oxford University Press" }  %address Oxford or London?
+ @String{PergamonPress = "Pergamon Press" }
+ @String{PlenumPress = "Plenum Press" }
+ @String{PrenticeHall = "Prentice-Hall" }
+ @String{SIAMPub = "{SIAM} Publications" }
+ @String{Springer = "Springer-Verlag" }
+ @String{TexasPress = "University of Texas Press" }
+ @String{VanNostrand = "Van Nostrand" }
+ @String{WHFreeman = "W. H. Freeman and Co." }
+
+%Entries
+
+@inproceedings{Immorlica,
+	author = {Immorlica, Nicole and Kleinberg, Jon and Mahdian, Mohammad and Wexler, Tom},
+	title = {The Role of Compatibility in the Diffusion of Technologies Through Social Networks},
+	booktitle = {Proceedings of the 8th ACM Conference on Electronic Commerce},
+	series = {EC '07},
+	year = {2007},
+	isbn = {978-1-59593-653-0},
+	location = {San Diego, California, USA},
+	pages = {75--83},
+	numpages = {9},
+	url = {http://doi.acm.org/10.1145/1250910.1250923},
+	doi = {10.1145/1250910.1250923},
+	acmid = {1250923},
+	publisher = {ACM},
+	address = {New York, NY, USA},
+	keywords = {algorithmic game theory, contagion on networks, diffusion of innovations},
+} 
+
+@article{Jackson,
+	author = {Jackson, M. and Yariv, L.},
+	title = {Diffusion on social networks},
+	journal = {EconomiePublique},
+	year = {2005},
+	volume = {16},
+	pages = {69--82}
+}
+
+@article{Morris,
+	author = {Morris, Stephen},
+	title = {Contagion},
+	journal = {The Review of Economic Studies},
+	volume = {67},
+	number = {1},
+	pages = {57-78},
+	year = {2000},
+	doi = {10.1111/1467-937X.00121},
+	URL = { + http://dx.doi.org/10.1111/1467-937X.00121},
+	eprint = {/oup/backfile/content_public/journal/restud/67/1/10.1111/1467-937x.00121/2/67-1-57.pdf}
+}
+
+@book{Valente,
+	title={Network Models of the Diffusion of Innovations},
+	author={Valente, T.W.},
+	isbn={9781881303213},
+	lccn={94024387},
+	series={Communication Series},
+	url={https://books.google.com/books?id=w-LtAAAAMAAJ},
+	year={1995},
+	publisher={Hampton Press}
+}
+
+@book{Rogers,
+	title={Diffusion of Innovations, 5th Edition},
+	author={Rogers, E.M.},
+	isbn={9780743258234},
+	url={https://books.google.com/books?id=9U1K5LjUOwEC},
+	year={2003},
+	publisher={Free Press}
+}
+
+@book{Cooper,
+	title={Language spread: studies in diffusion and social change},
+	author={Cooper, R.L.},
+	isbn={9780253320001},
+	lccn={lc81047567},
+	url={https://books.google.com/books?id=h2BiAAAAMAAJ},
+	year={1982},
+	publisher={Indiana University Press}
+}
+
+@article{Blume,
+	title = "The Statistical Mechanics of Strategic Interaction",
+	journal = "Games and Economic Behavior",
+	volume = "5",
+	number = "3",
+	pages = "387 - 424",
+	year = "1993",
+	issn = "0899-8256",
+	doi = "https://doi.org/10.1006/game.1993.1023",
+	url = "http://www.sciencedirect.com/science/article/pii/S0899825683710237",
+	author = "Lawrence E. Blume"
+}
+
+@article{Ellison,
+	ISSN = {00129682, 14680262},
+	URL = {http://www.jstor.org/stable/2951493},
+	author = {Glenn Ellison},
+	journal = {Econometrica},
+	number = {5},
+	pages = {1047-1071},
+	publisher = {[Wiley, Econometric Society]},
+	title = {Learning, Local Interaction, and Coordination},
+	volume = {61},
+	year = {1993}
+}
+
+@book{Peyton,
+	title={Individual Strategy and Social Structure: An Evolutionary Theory of Institutions},
+	author={Young, H.P.},
+	isbn={9780691086873},
+	lccn={97041419},
+	series={Princeton paperbacks},
+	url={https://books.google.com/books?id=iI7XCi-lnSQC},
+	year={2001},
+	publisher={Princeton University Press}
+}
+
+@inproceedings{Seeman,
+	author = {Seeman, Lior and Singer, Yaron},
+	title = {Adaptive Seeding in Social Networks},
+	booktitle = {Proceedings of the 2013 IEEE 54th Annual Symposium on Foundations of Computer Science},
+	series = {FOCS '13},
+	year = {2013},
+	isbn = {978-0-7695-5135-7},
+	pages = {459--468},
+	numpages = {10},
+	url = {http://dx.doi.org/10.1109/FOCS.2013.56},
+	doi = {10.1109/FOCS.2013.56},
+	acmid = {2570615},
+	publisher = {IEEE Computer Society},
+	address = {Washington, DC, USA},
+	keywords = {social networks, influence maximization, approximation algorithms, stochastic optimization, submodularity}
+}
+
+@article{SC1,
+	author = "Saloff-Coste, L. and Zuniga, J.",
+	title = "Merging and stability for time inhomogeneous finite Markov chains",
+	year = "2010"
+}
+
+@article{SC2,
+	author = "Saloff-Coste, Laurent and Zuniga, Jessica",
+	doi = "10.1214/EJP.v14-656",
+	fjournal = "Electronic Journal of Probability",
+	journal = "Electron. J. Probab.",
+	pages = "1456--1494",
+	pno = "49",
+	publisher = "The Institute of Mathematical Statistics and the Bernoulli Society",
+	title = "Merging for time inhomogeneous finite Markov chains, Part I: Singular values and stability",
+	url = "https://doi.org/10.1214/EJP.v14-656",
+	volume = "14",
+	year = "2009"
+}
+
+@article{SC3,
+	author = "Saloff-Coste, L. and Zúñiga, J.",
+	doi = "10.1214/10-AOP572",
+	fjournal = "The Annals of Probability",
+	journal = "Ann. Probab.",
+	month = "05",
+	number = "3",
+	pages = "1161--1203",
+	publisher = "The Institute of Mathematical Statistics",
+	title = "Merging for inhomogeneous finite Markov chains, part II: Nash and log-Sobolev inequalities",
+	url = "https://doi.org/10.1214/10-AOP572",
+	volume = "39",
+	year = "2011"
+}
+
+@phdthesis{Shen,
+	author = "Shen, Jiarou",
+	title = "Merge Times and Hitting Times of Time-inhomogeneous Markov Chains",
+	year = "2013"
+}
+
+@article{Douc,
+	author = "Douc, R. and Moulines, E. and Rosenthal, Jeffrey S.",
+	doi = "10.1214/105051604000000620",
+	fjournal = "The Annals of Applied Probability",
+	journal = "Ann. Appl. Probab.",
+	month = "11",
+	number = "4",
+	pages = "1643--1665",
+	publisher = "The Institute of Mathematical Statistics",
+	title = "Quantitative bounds on convergence of time-inhomogeneous Markov chains",
+	url = "https://doi.org/10.1214/105051604000000620",
+	volume = "14",
+	year = "2004"
+}
+
+@article{Sonin,
+	ISSN = {07492170},
+	URL = {http://www.jstor.org/stable/4355954},
+	author = {Isaac Sonin},
+	journal = {Lecture Notes-Monograph Series},
+	pages = {337-346},
+	publisher = {Institute of Mathematical Statistics},
+	title = {The Asymptotic Behaviour of a General Finite Nonhomogeneous Markov Chain (The Decomposition-Separation Theorem)},
+	volume = {30},
+	year = {1996}
+}
+
+@article{SC4,
+	title = "Convergence of some time inhomogeneous Markov chains via spectral techniques",
+	journal = "Stochastic Processes and their Applications",
+	volume = "117",
+	number = "8",
+	pages = "961 - 979",
+	year = "2007",
+	issn = "0304-4149",
+	doi = "https://doi.org/10.1016/j.spa.2006.11.004",
+	url = "http://www.sciencedirect.com/science/article/pii/S0304414906001736",
+	author = "L. Saloff-Coste and J. Zúñiga",
+	keywords = "Time inhomogeneous Markov chains, Singular values, Spectral techniques"
+}
+
+@article{SC5,
+	author = "Saloff-Coste, L. and Zúñiga, J.",
+	doi = "10.1214/09-AAP661",
+	fjournal = "The Annals of Applied Probability",
+	journal = "Ann. Appl. Probab.",
+	month = "10",
+	number = "5",
+	pages = "1831--1853",
+	publisher = "The Institute of Mathematical Statistics",
+	title = "Time inhomogeneous Markov chains with wave-like behavior",
+	url = "https://doi.org/10.1214/09-AAP661",
+	volume = "20",
+	year = "2010"
+}
+
+@Article{Fleischer,
+	author="Fleischer, I. and Joffe, A.",
+	title="Ratio ergodicity for non-homogeneous Markov Chains in general state spaces",
+	journal="Journal of Theoretical Probability",
+	year="1995",
+	month="Jan",
+	day="01",
+	volume="8",
+	number="1",
+	pages="31--37",
+	issn="1572-9230",
+	doi="10.1007/BF02213452",
+	url="https://doi.org/10.1007/BF02213452"
+}
+
+@inproceedings{Kempe,
+	author = {Kempe, David and Kleinberg, Jon and Tardos, \'{E}va},
+	title = {Maximizing the Spread of Influence Through a Social Network},
+	booktitle = {Proceedings of the Ninth ACM SIGKDD International Conference on Knowledge Discovery and Data Mining},
+	series = {KDD '03},
+	year = {2003},
+	isbn = {1-58113-737-0},
+	location = {Washington, D.C.},
+	pages = {137--146},
+	numpages = {10},
+	url = {http://doi.acm.org/10.1145/956750.956769},
+	doi = {10.1145/956750.956769},
+	acmid = {956769},
+	publisher = {ACM},
+	address = {New York, NY, USA},
+	keywords = {approximation algorithms, diffusion of innovations, social networks, viral marketing},
+} 

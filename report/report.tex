@@ -115,8 +115,29 @@ spread through a social network.
 
 \section{Related Work}
 
-\par 
+\par This work was mainly inspired by novel approaches taken in analyzing how technologies diffuse in social networks
+\cite{Immorlica}. While technology adoption can certainly be viewed as an information diffusion problem, the
+constraints imposed on the model in most technology adoption problems make it difficult to obtain a general model that
+is useful in real-life passive information diffusion. Information diffusion in social networks has of course been
+studied in past literature, and there have been significant results, both theoretical
+\cite{Jackson, Morris, Valente} and experimental \cite{Rogers, Cooper}. An active line of research in economics
+and mathematical sociology is concerned with modeling these types of diffusion processes as a coordination game on
+the social network \cite{Blume, Ellison, Jackson, Morris, Peyton}.
 
+\par Another approach to information diffusion is the problem of \textit{influence maximization} where instead of
+analyzing the passive diffusion of information in the social network, one attempts to compute the optimal set of
+agents in the network which, if given the information, will trigger the maximum cascade of this information throughout
+the network. This problem, while NP-hard in the general case \cite{Kempe}, has attracted a lot of attention and there
+have been several recent attempts to utilize network structure in order to obtain strong theoretical guarantees
+\cite{Seeman}.
+
+\par On the stochastic side, time inhomogeneous Markov chains have evaded theoretical analysis for decades. However,
+while early work in the field relied mostly on spectral techniques to provide guarantees on the asymptotic behavior
+of such Markov chains \cite{Sonin, Fleischer}, more recent techniques utilize a combination of both spectral techniques
+and state-of-the-art results from stability theory \cite{SC2, SC3, SC4, SC5} to provide a better understanding into
+how non-homogeneous Markov chains behave. These results have very recently culminated in the development of highly
+significant quantitative upper bounds on the expected mixing and hitting times of non-homogeneous Markov chains
+\cite{SC1, Shen, Douc}, which we rely upon in our theoretical analysis.
 
 \section{Theoretical Analysis}
 
@@ -300,13 +321,13 @@ varying many paramteres to see their effect on the network. Our hope is that the
 results that we develop, or provide some insight that highlights the limitations of our theoretical analysis.
 
 
-\begin{acks}
-	
-	The authors would like to thank Robert Andrews from the University of
-	Illinois at Urbana-Champaign for providing critical insight on the
-	theoretical analysis of our model.
-	
-\end{acks}
+%\begin{acks}
+%	
+%	The authors would like to thank Robert Andrews from the University of
+%	Illinois at Urbana-Champaign for providing critical insight on the
+%	theoretical analysis of our model.
+%	
+%\end{acks}
 
 % Bibliography
 \bibliographystyle{ACM-Reference-Format}

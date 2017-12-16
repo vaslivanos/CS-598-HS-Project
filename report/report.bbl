@@ -1,0 +1,322 @@
+%%% -*-BibTeX-*-
+%%% Do NOT edit. File created by BibTeX with style
+%%% ACM-Reference-Format-Journals [18-Jan-2012].
+
+\begin{thebibliography}{00}
+
+%%% ====================================================================
+%%% NOTE TO THE USER: you can override these defaults by providing
+%%% customized versions of any of these macros before the \bibliography
+%%% command.  Each of them MUST provide its own final punctuation,
+%%% except for \shownote{}, \showDOI{}, and \showURL{}.  The latter two
+%%% do not use final punctuation, in order to avoid confusing it with
+%%% the Web address.
+%%%
+%%% To suppress output of a particular field, define its macro to expand
+%%% to an empty string, or better, \unskip, like this:
+%%%
+%%% \newcommand{\showDOI}[1]{\unskip}   % LaTeX syntax
+%%%
+%%% \def \showDOI #1{\unskip}           % plain TeX syntax
+%%%
+%%% ====================================================================
+
+\ifx \showCODEN    \undefined \def \showCODEN     #1{\unskip}     \fi
+\ifx \showDOI      \undefined \def \showDOI       #1{{\tt DOI:}\penalty0{#1}\ }
+  \fi
+\ifx \showISBNx    \undefined \def \showISBNx     #1{\unskip}     \fi
+\ifx \showISBNxiii \undefined \def \showISBNxiii  #1{\unskip}     \fi
+\ifx \showISSN     \undefined \def \showISSN      #1{\unskip}     \fi
+\ifx \showLCCN     \undefined \def \showLCCN      #1{\unskip}     \fi
+\ifx \shownote     \undefined \def \shownote      #1{#1}          \fi
+\ifx \showarticletitle \undefined \def \showarticletitle #1{#1}   \fi
+\ifx \showURL      \undefined \def \showURL       #1{#1}          \fi
+% The following commands are used for tagged output and should be
+% invisible to TeX
+\providecommand\bibfield[2]{#2}
+\providecommand\bibinfo[2]{#2}
+\providecommand\natexlab[1]{#1}
+\providecommand\showeprint[2][]{arXiv:#2}
+
+\bibitem[\protect\citeauthoryear{Blume}{Blume}{1993}]%
+        {Blume}
+\bibfield{author}{\bibinfo{person}{Lawrence~E. Blume}.}
+  \bibinfo{year}{1993}\natexlab{}.
+\newblock \showarticletitle{The Statistical Mechanics of Strategic
+  Interaction}.
+\newblock \bibinfo{journal}{{\em Games and Economic Behavior\/}}
+  \bibinfo{volume}{5}, \bibinfo{number}{3} (\bibinfo{year}{1993}),
+  \bibinfo{pages}{387 -- 424}.
+\newblock
+\showISSN{0899-8256}
+\showDOI{%
+\url{http://dx.doi.org/https://doi.org/10.1006/game.1993.1023}}
+
+
+\bibitem[\protect\citeauthoryear{Cooper}{Cooper}{1982}]%
+        {Cooper}
+\bibfield{author}{\bibinfo{person}{R.L. Cooper}.}
+  \bibinfo{year}{1982}\natexlab{}.
+\newblock \bibinfo{booktitle}{{\em Language spread: studies in diffusion and
+  social change}}.
+\newblock \bibinfo{publisher}{Indiana University Press}.
+\newblock
+\showISBNx{9780253320001}
+\showLCCN{lc81047567}
+\showURL{%
+\url{https://books.google.com/books?id=h2BiAAAAMAAJ}}
+
+
+\bibitem[\protect\citeauthoryear{Douc, Moulines, and Rosenthal}{Douc
+  et~al\mbox{.}}{2004}]%
+        {Douc}
+\bibfield{author}{\bibinfo{person}{R. Douc}, \bibinfo{person}{E. Moulines},
+  {and} \bibinfo{person}{Jeffrey~S. Rosenthal}.}
+  \bibinfo{year}{2004}\natexlab{}.
+\newblock \showarticletitle{Quantitative bounds on convergence of
+  time-inhomogeneous Markov chains}.
+\newblock \bibinfo{journal}{{\em Ann. Appl. Probab.\/}} \bibinfo{volume}{14},
+  \bibinfo{number}{4} (\bibinfo{date}{11} \bibinfo{year}{2004}),
+  \bibinfo{pages}{1643--1665}.
+\newblock
+\showDOI{%
+\url{http://dx.doi.org/10.1214/105051604000000620}}
+
+
+\bibitem[\protect\citeauthoryear{Ellison}{Ellison}{1993}]%
+        {Ellison}
+\bibfield{author}{\bibinfo{person}{Glenn Ellison}.}
+  \bibinfo{year}{1993}\natexlab{}.
+\newblock \showarticletitle{Learning, Local Interaction, and Coordination}.
+\newblock \bibinfo{journal}{{\em Econometrica\/}} \bibinfo{volume}{61},
+  \bibinfo{number}{5} (\bibinfo{year}{1993}), \bibinfo{pages}{1047--1071}.
+\newblock
+\showISSN{00129682, 14680262}
+\showURL{%
+\url{http://www.jstor.org/stable/2951493}}
+
+
+\bibitem[\protect\citeauthoryear{Fleischer and Joffe}{Fleischer and
+  Joffe}{1995}]%
+        {Fleischer}
+\bibfield{author}{\bibinfo{person}{I. Fleischer} {and} \bibinfo{person}{A.
+  Joffe}.} \bibinfo{year}{1995}\natexlab{}.
+\newblock \showarticletitle{Ratio ergodicity for non-homogeneous Markov Chains
+  in general state spaces}.
+\newblock \bibinfo{journal}{{\em Journal of Theoretical Probability\/}}
+  \bibinfo{volume}{8}, \bibinfo{number}{1} (\bibinfo{date}{01 Jan}
+  \bibinfo{year}{1995}), \bibinfo{pages}{31--37}.
+\newblock
+\showISSN{1572-9230}
+\showDOI{%
+\url{http://dx.doi.org/10.1007/BF02213452}}
+
+
+\bibitem[\protect\citeauthoryear{Immorlica, Kleinberg, Mahdian, and
+  Wexler}{Immorlica et~al\mbox{.}}{2007}]%
+        {Immorlica}
+\bibfield{author}{\bibinfo{person}{Nicole Immorlica}, \bibinfo{person}{Jon
+  Kleinberg}, \bibinfo{person}{Mohammad Mahdian}, {and} \bibinfo{person}{Tom
+  Wexler}.} \bibinfo{year}{2007}\natexlab{}.
+\newblock \showarticletitle{The Role of Compatibility in the Diffusion of
+  Technologies Through Social Networks}. In \bibinfo{booktitle}{{\em
+  Proceedings of the 8th ACM Conference on Electronic Commerce}} {\em
+  (\bibinfo{series}{EC '07})}. \bibinfo{publisher}{ACM}, \bibinfo{address}{New
+  York, NY, USA}, \bibinfo{pages}{75--83}.
+\newblock
+\showISBNx{978-1-59593-653-0}
+\showDOI{%
+\url{http://dx.doi.org/10.1145/1250910.1250923}}
+
+
+\bibitem[\protect\citeauthoryear{Jackson and Yariv}{Jackson and Yariv}{2005}]%
+        {Jackson}
+\bibfield{author}{\bibinfo{person}{M. Jackson} {and} \bibinfo{person}{L.
+  Yariv}.} \bibinfo{year}{2005}\natexlab{}.
+\newblock \showarticletitle{Diffusion on social networks}.
+\newblock \bibinfo{journal}{{\em EconomiePublique\/}}  \bibinfo{volume}{16}
+  (\bibinfo{year}{2005}), \bibinfo{pages}{69--82}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Kempe, Kleinberg, and Tardos}{Kempe
+  et~al\mbox{.}}{2003}]%
+        {Kempe}
+\bibfield{author}{\bibinfo{person}{David Kempe}, \bibinfo{person}{Jon
+  Kleinberg}, {and} \bibinfo{person}{\'{E}va Tardos}.}
+  \bibinfo{year}{2003}\natexlab{}.
+\newblock \showarticletitle{Maximizing the Spread of Influence Through a Social
+  Network}. In \bibinfo{booktitle}{{\em Proceedings of the Ninth ACM SIGKDD
+  International Conference on Knowledge Discovery and Data Mining}} {\em
+  (\bibinfo{series}{KDD '03})}. \bibinfo{publisher}{ACM}, \bibinfo{address}{New
+  York, NY, USA}, \bibinfo{pages}{137--146}.
+\newblock
+\showISBNx{1-58113-737-0}
+\showDOI{%
+\url{http://dx.doi.org/10.1145/956750.956769}}
+
+
+\bibitem[\protect\citeauthoryear{Morris}{Morris}{2000}]%
+        {Morris}
+\bibfield{author}{\bibinfo{person}{Stephen Morris}.}
+  \bibinfo{year}{2000}\natexlab{}.
+\newblock \showarticletitle{Contagion}.
+\newblock \bibinfo{journal}{{\em The Review of Economic Studies\/}}
+  \bibinfo{volume}{67}, \bibinfo{number}{1} (\bibinfo{year}{2000}),
+  \bibinfo{pages}{57--78}.
+\newblock
+\showDOI{%
+\url{http://dx.doi.org/10.1111/1467-937X.00121}}
+
+
+\bibitem[\protect\citeauthoryear{Rogers}{Rogers}{2003}]%
+        {Rogers}
+\bibfield{author}{\bibinfo{person}{E.M. Rogers}.}
+  \bibinfo{year}{2003}\natexlab{}.
+\newblock \bibinfo{booktitle}{{\em Diffusion of Innovations, 5th Edition}}.
+\newblock \bibinfo{publisher}{Free Press}.
+\newblock
+\showISBNx{9780743258234}
+\showURL{%
+\url{https://books.google.com/books?id=9U1K5LjUOwEC}}
+
+
+\bibitem[\protect\citeauthoryear{Saloff-Coste and Zuniga}{Saloff-Coste and
+  Zuniga}{2009}]%
+        {SC2}
+\bibfield{author}{\bibinfo{person}{Laurent Saloff-Coste} {and}
+  \bibinfo{person}{Jessica Zuniga}.} \bibinfo{year}{2009}\natexlab{}.
+\newblock \showarticletitle{Merging for time inhomogeneous finite Markov
+  chains, Part I: Singular values and stability}.
+\newblock \bibinfo{journal}{{\em Electron. J. Probab.\/}}  \bibinfo{volume}{14}
+  (\bibinfo{year}{2009}), \bibinfo{pages}{1456--1494}.
+\newblock
+\showDOI{%
+\url{http://dx.doi.org/10.1214/EJP.v14-656}}
+
+
+\bibitem[\protect\citeauthoryear{Saloff-Coste and Zuniga}{Saloff-Coste and
+  Zuniga}{2010}]%
+        {SC1}
+\bibfield{author}{\bibinfo{person}{L. Saloff-Coste} {and} \bibinfo{person}{J.
+  Zuniga}.} \bibinfo{year}{2010}\natexlab{}.
+\newblock \showarticletitle{Merging and stability for time inhomogeneous finite
+  Markov chains}.
+\newblock  (\bibinfo{year}{2010}).
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Saloff-Coste and Zúñiga}{Saloff-Coste and
+  Zúñiga}{2007}]%
+        {SC4}
+\bibfield{author}{\bibinfo{person}{L. Saloff-Coste} {and} \bibinfo{person}{J.
+  Zúñiga}.} \bibinfo{year}{2007}\natexlab{}.
+\newblock \showarticletitle{Convergence of some time inhomogeneous Markov
+  chains via spectral techniques}.
+\newblock \bibinfo{journal}{{\em Stochastic Processes and their
+  Applications\/}} \bibinfo{volume}{117}, \bibinfo{number}{8}
+  (\bibinfo{year}{2007}), \bibinfo{pages}{961 -- 979}.
+\newblock
+\showISSN{0304-4149}
+\showDOI{%
+\url{http://dx.doi.org/https://doi.org/10.1016/j.spa.2006.11.004}}
+
+
+\bibitem[\protect\citeauthoryear{Saloff-Coste and Zúñiga}{Saloff-Coste and
+  Zúñiga}{2010}]%
+        {SC5}
+\bibfield{author}{\bibinfo{person}{L. Saloff-Coste} {and} \bibinfo{person}{J.
+  Zúñiga}.} \bibinfo{year}{2010}\natexlab{}.
+\newblock \showarticletitle{Time inhomogeneous Markov chains with wave-like
+  behavior}.
+\newblock \bibinfo{journal}{{\em Ann. Appl. Probab.\/}} \bibinfo{volume}{20},
+  \bibinfo{number}{5} (\bibinfo{date}{10} \bibinfo{year}{2010}),
+  \bibinfo{pages}{1831--1853}.
+\newblock
+\showDOI{%
+\url{http://dx.doi.org/10.1214/09-AAP661}}
+
+
+\bibitem[\protect\citeauthoryear{Saloff-Coste and Zúñiga}{Saloff-Coste and
+  Zúñiga}{2011}]%
+        {SC3}
+\bibfield{author}{\bibinfo{person}{L. Saloff-Coste} {and} \bibinfo{person}{J.
+  Zúñiga}.} \bibinfo{year}{2011}\natexlab{}.
+\newblock \showarticletitle{Merging for inhomogeneous finite Markov chains,
+  part II: Nash and log-Sobolev inequalities}.
+\newblock \bibinfo{journal}{{\em Ann. Probab.\/}} \bibinfo{volume}{39},
+  \bibinfo{number}{3} (\bibinfo{date}{05} \bibinfo{year}{2011}),
+  \bibinfo{pages}{1161--1203}.
+\newblock
+\showDOI{%
+\url{http://dx.doi.org/10.1214/10-AOP572}}
+
+
+\bibitem[\protect\citeauthoryear{Seeman and Singer}{Seeman and Singer}{2013}]%
+        {Seeman}
+\bibfield{author}{\bibinfo{person}{Lior Seeman} {and} \bibinfo{person}{Yaron
+  Singer}.} \bibinfo{year}{2013}\natexlab{}.
+\newblock \showarticletitle{Adaptive Seeding in Social Networks}. In
+  \bibinfo{booktitle}{{\em Proceedings of the 2013 IEEE 54th Annual Symposium
+  on Foundations of Computer Science}} {\em (\bibinfo{series}{FOCS '13})}.
+  \bibinfo{publisher}{IEEE Computer Society}, \bibinfo{address}{Washington, DC,
+  USA}, \bibinfo{pages}{459--468}.
+\newblock
+\showISBNx{978-0-7695-5135-7}
+\showDOI{%
+\url{http://dx.doi.org/10.1109/FOCS.2013.56}}
+
+
+\bibitem[\protect\citeauthoryear{Shen}{Shen}{2013}]%
+        {Shen}
+\bibfield{author}{\bibinfo{person}{Jiarou Shen}.}
+  \bibinfo{year}{2013}\natexlab{}.
+\newblock {\em \bibinfo{title}{Merge Times and Hitting Times of
+  Time-inhomogeneous Markov Chains}}.
+\newblock \bibinfo{thesistype}{Ph.D. Dissertation}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Sonin}{Sonin}{1996}]%
+        {Sonin}
+\bibfield{author}{\bibinfo{person}{Isaac Sonin}.}
+  \bibinfo{year}{1996}\natexlab{}.
+\newblock \showarticletitle{The Asymptotic Behaviour of a General Finite
+  Nonhomogeneous Markov Chain (The Decomposition-Separation Theorem)}.
+\newblock \bibinfo{journal}{{\em Lecture Notes-Monograph Series\/}}
+  \bibinfo{volume}{30} (\bibinfo{year}{1996}), \bibinfo{pages}{337--346}.
+\newblock
+\showISSN{07492170}
+\showURL{%
+\url{http://www.jstor.org/stable/4355954}}
+
+
+\bibitem[\protect\citeauthoryear{Valente}{Valente}{1995}]%
+        {Valente}
+\bibfield{author}{\bibinfo{person}{T.W. Valente}.}
+  \bibinfo{year}{1995}\natexlab{}.
+\newblock \bibinfo{booktitle}{{\em Network Models of the Diffusion of
+  Innovations}}.
+\newblock \bibinfo{publisher}{Hampton Press}.
+\newblock
+\showISBNx{9781881303213}
+\showLCCN{94024387}
+\showURL{%
+\url{https://books.google.com/books?id=w-LtAAAAMAAJ}}
+
+
+\bibitem[\protect\citeauthoryear{Young}{Young}{2001}]%
+        {Peyton}
+\bibfield{author}{\bibinfo{person}{H.P. Young}.}
+  \bibinfo{year}{2001}\natexlab{}.
+\newblock \bibinfo{booktitle}{{\em Individual Strategy and Social Structure: An
+  Evolutionary Theory of Institutions}}.
+\newblock \bibinfo{publisher}{Princeton University Press}.
+\newblock
+\showISBNx{9780691086873}
+\showLCCN{97041419}
+\showURL{%
+\url{https://books.google.com/books?id=iI7XCi-lnSQC}}
+
+
+\end{thebibliography}
